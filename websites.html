@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Разработка сайтов и лендингов — Mazzeru</title>
+  <meta name="description" content="Создание сайтов и лендингов под ключ в Казахстане: дизайн, разработка, анимации, интеграция с Kaspi и WhatsApp.">
+  <meta property="og:title" content="Разработка сайтов и лендингов — Mazzeru">
+  <meta property="og:description" content="Создание сайтов и лендингов под ключ в Казахстане: дизайн, разработка, анимации, интеграция с Kaspi и WhatsApp.">
+  <meta property="og:image" content="assets/img/og.png">
+  <meta name="theme-color" content="#0047ff">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>try{var d=document.documentElement,t=localStorage.getItem("theme");if(t)d.dataset.theme=t;var q=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(q)d.lang=q==="kz"?"kk":q;if(sessionStorage.getItem("intro")||/[?&]nointro/.test(location.search)||matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("intro-seen");if(sessionStorage.getItem("wipe")==="1")d.classList.add("wiping")}catch(e){}</script>
+</head>
+<body data-page="web">
+  <!-- Интро: ZZ-знак и логотип -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro-slash"></div>
+    <div class="intro-stage">
+      <svg class="intro-mark" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg>
+      <div class="intro-word"><span>m</span><span>a</span><span>z</span><span>z</span><span>e</span><span>r</span><span>u</span></div>
+    </div>
+    <span class="intro-tag label">AI VIDEO / WEB / MOBILE FILM</span>
+  </div>
+  <div class="wipe" aria-hidden="true"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Mazzeru"><svg class="mark" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg><span class="wordmark">mazzeru</span></a>
+      <nav class="nav" aria-label="Menu">
+        <a href="ai-content.html" data-i18n="nav.ai">ИИ контент</a>
+        <a href="websites.html" class="active" data-i18n="nav.web">Сайты</a>
+        <a href="mobilography.html" data-i18n="nav.mobile">Мобилография</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="kz">KZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">ENG</button>
+        </div>
+        <button class="icon-btn" type="button" data-theme-toggle data-i18n-aria="ui.theme" aria-label="Сменить тему">
+          <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+          <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a class="btn btn--sm" href="#contacts" data-magnetic><span data-i18n="hdr.cta">Обсудить проект</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <button class="burger" type="button" data-burger data-i18n-aria="ui.menu" aria-label="Меню" aria-expanded="false"><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mmenu" id="mmenu">
+    <nav>
+      <a href="index.html" data-i18n="nav.home">Главная</a>
+      <a href="ai-content.html" data-i18n="nav.ai">ИИ контент</a>
+      <a href="websites.html" class="active" data-i18n="nav.web">Сайты</a>
+      <a href="mobilography.html" data-i18n="nav.mobile">Мобилография</a>
+      <a href="#contacts" data-close-menu data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div class="mmenu-row">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="kz">KZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">ENG</button>
+      </div>
+      <a class="btn btn--sm" href="#" data-wa><span data-i18n="cta.btn">Написать нам</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-text">
+          <nav class="hero-eyebrow crumbs" aria-label="breadcrumbs"><a href="index.html" data-i18n="nav.home">Главная</a><span class="sep"></span><span data-i18n="nav.web">Сайты</span></nav>
+          <h1 data-lines data-i18n="web.h1">Сайты,<br>которые<br><em>продают</em></h1>
+          <p class="hero-tag label label--muted" data-i18n="web.tagline">Лендинги / Сайты / Магазины</p>
+          <p class="hero-lead" data-i18n="web.lead">От идеи и дизайна до запуска, аналитики и поддержки. Быстрые, красивые на телефоне и на трёх языках — KZ, RU, EN.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#" data-wa data-magnetic><span data-i18n="hero.create">Давайте создадим</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+            <a class="link-arrow" href="#work"><span data-i18n="hero.works">Смотреть работы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <div class="hero-visual hero-visual--web" data-parallax>
+<!--visual-web-->          <div class="hero-sun"></div>
+          <div class="hero-circle">
+            <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+            <svg class="ring-text" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="rt-web" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/></defs><text><textPath href="#rt-web">AI VIDEO • WEB • MOBILE FILM • AI VIDEO • WEB • MOBILE FILM •</textPath></text></svg>
+            <div class="core"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg></div>
+          </div>
+          <div class="vis vis-browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span class="url">mazzeru.kz</span></div>
+            <div class="vb-body"><img src="assets/img/projects/itecx.webp" alt=""></div>
+          </div>
+          <div class="vis vis-phone">
+            <div class="ph-screen"><img src="assets/img/projects/astanatechcup.webp" alt="">
+              <div class="ph-top"><span class="rec"><i></i>REC</span><span data-timecode>00:00</span></div>
+              <span class="ph-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg></span>
+              <div class="ph-bottom"><b>Reels</b><span class="ph-like">♥ <em data-likes>1.2K</em></span></div>
+              <div class="ph-prog"><i></i></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="bands" aria-hidden="true">
+      <div class="band band--yellow" data-marquee="mq.web"></div>
+      <div class="band band--blue" data-marquee="mq.web"></div>
+    </div>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="stats" data-reveal>
+          <div class="stat"><b data-count="40" data-suffix="+">0</b><span data-i18n="web.stat0">сайтов</span></div>
+          <div class="stat"><b data-count="10">0</b><span data-i18n="web.stat1">дней — лендинг</span></div>
+          <div class="stat"><b data-count="95" data-suffix="+">0</b><span data-i18n="web.stat2">PageSpeed</span></div>
+          <div class="stat"><b data-count="3">0</b><span data-i18n="web.stat3">языка на сайте</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap duo">
+        <div class="panel panel--blue" data-reveal>
+          <span class="label" data-i18n="web.c1lbl">Услуги</span>
+          <h3 data-i18n="web.c1">Что разрабатываем</h3>
+          <ul class="bullets">
+              <li data-i18n="web.c1.0"><b>Лендинги</b> под рекламу и запуски</li>
+              <li data-i18n="web.c1.1"><b>Корпоративные сайты</b> и сайты-визитки</li>
+              <li data-i18n="web.c1.2"><b>Сайты мероприятий</b> с регистрацией участников</li>
+              <li data-i18n="web.c1.3"><b>Интернет-магазины</b> с оплатой Kaspi</li>
+          </ul>
+        </div>
+        <div class="panel panel--ink" data-reveal>
+          <span class="label" data-i18n="web.c2lbl">Результат</span>
+          <h3 data-i18n="web.c2">Что вы получите</h3>
+          <ul class="bullets">
+              <li data-i18n="web.c2.0"><b>Уникальный дизайн</b> с анимациями</li>
+              <li data-i18n="web.c2.1"><b>Три языка</b> — KZ, RU, EN</li>
+              <li data-i18n="web.c2.2"><b>Заявки</b> в WhatsApp, Telegram, CRM</li>
+              <li data-i18n="web.c2.3"><b>SEO и аналитика</b> с первого дня</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="process">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.process">Процесс</span><h2 class="h2" data-i18n="steps.h">Как мы работаем</h2></div>
+          
+        </div>
+        <div class="steps">
+          <div class="step" data-reveal><div><b data-i18n="web.step0">Бриф</b><span data-i18n="web.step0d">Цели, аудитория, конкуренты</span></div></div>
+          <div class="step" data-reveal><div><b data-i18n="web.step1">Дизайн</b><span data-i18n="web.step1d">Прототип и макеты в Figma</span></div></div>
+          <div class="step" data-reveal><div><b data-i18n="web.step2">Разработка</b><span data-i18n="web.step2d">Вёрстка, анимации, интеграции</span></div></div>
+          <div class="step" data-reveal><div><b data-i18n="web.step3">Запуск</b><span data-i18n="web.step3d">Домен, SEO, аналитика</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.work">Портфолио</span><h2 class="h2" data-i18n="web.portH">Работы: сайты</h2></div>
+          
+        </div>
+        <div data-projects="web" data-layout="grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.process">Процесс</span><h2 class="h2" data-i18n="web.stackH">Технологии</h2></div>
+          
+        </div>
+        <div class="stack" data-reveal>
+          <span>Figma</span><span>HTML / CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>Vite</span><span>Tailwind</span><span>GSAP</span><span>Node.js</span><span>Tilda</span><span>WordPress</span><span>Kaspi Pay</span><span>amoCRM</span><span>Google Analytics</span><span>Яндекс Метрика</span><span>KZ · RU · EN</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prices">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.prices">Цены</span><h2 class="h2" data-i18n="prices.h">Пакеты и стоимость</h2></div>
+          <p class="sec-note" data-i18n="prices.note">Точная цена — после брифа. Пакеты можно комбинировать.</p>
+        </div>
+        <div class="packages" data-packages="web"></div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap faq-grid">
+        <div data-reveal>
+          <span class="label" data-i18n="lbl.faq" style="color:var(--blue);display:block;margin-bottom:18px">Вопросы</span>
+          <h2 class="h2" data-i18n="faq.h">Частые вопросы</h2>
+          <p class="sec-note" data-i18n="faq.note" style="margin:22px 0 28px">Не нашли ответ? Напишите — ответим за 15 минут.</p>
+          <a class="btn btn--blue" href="#" data-wa data-magnetic><span data-i18n="cta.btn">Написать нам</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <div class="faq" data-faq="web"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="contact" id="contacts" data-contacts></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

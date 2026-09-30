@@ -1,0 +1,546 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mazzeru Brand</title>
+<meta name="description" content="Фирменный стиль Mazzeru: логотипы, цвета, шрифты и шаблоны для Instagram.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="files/logo/mazzeru-mark-blue.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: "Unbounded"; src: url("files/fonts/Unbounded-ExtraBold.ttf") format("truetype"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Inter Tight"; src: url("files/fonts/InterTight-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter Tight"; src: url("files/fonts/InterTight-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Inter Tight"; src: url("files/fonts/InterTight-Black.ttf") format("truetype"); font-weight: 900; font-display: swap; }
+
+:root {
+  --bg: #faf8f2; --surface: #ffffff; --sand: #f0ede3; --ink: #0b0b0f; --muted: #5d5c66;
+  --line: rgba(11,11,15,.12); --blue: #0047ff; --yellow: #e7ff00;
+  --logo: "Unbounded", "Inter Tight", sans-serif; --sans: "Inter Tight", system-ui, sans-serif;
+  --r: 24px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; }
+h1, h2, h3 { font-weight: 900; letter-spacing: -0.035em; line-height: .95; text-transform: uppercase; text-wrap: balance; }
+h2 { font-size: clamp(40px, 6vw, 76px); margin: 14px 0 18px; }
+h3 { font-size: 22px; letter-spacing: -0.02em; }
+.note { color: var(--muted); max-width: 640px; }
+
+/* шапка */
+header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { height: 30px; width: auto; }
+nav.menu { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+nav.menu a { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+nav.menu a:hover { color: var(--blue); }
+
+/* кнопки */
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 8px 0 24px; border-radius: 999px; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; border: 0; cursor: pointer; font-family: inherit; }
+.btn i { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--yellow); display: grid; place-items: center; font-style: normal; font-size: 16px; }
+.btn--dark { background: var(--ink); color: var(--bg); }
+.btn--dark i { background: var(--yellow); color: var(--ink); }
+.dl { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--line); font-size: 12px; font-weight: 700; text-decoration: none; background: var(--surface); }
+.dl:hover { border-color: var(--ink); }
+
+/* hero */
+.hero { position: relative; overflow: hidden; padding: clamp(40px, 7vw, 90px) 0 clamp(50px, 7vw, 90px); }
+.hero .wrap { position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(56px, 11vw, 150px); margin: 18px 0 22px; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero p { max-width: 560px; color: var(--muted); font-size: 19px; margin-bottom: 30px; }
+.hero .c1 { position: absolute; width: 520px; aspect-ratio: 1; border-radius: 50%; background: var(--blue); right: -140px; top: -60px; }
+.hero .c2 { position: absolute; width: 300px; aspect-ratio: 1; border-radius: 50%; background: var(--yellow); right: 260px; bottom: -150px; }
+.hero .mk { position: absolute; right: 120px; top: 150px; width: 150px; transform: rotate(-12deg); filter: drop-shadow(0 20px 30px rgba(0,30,120,.35)); }
+
+section.block { padding: clamp(50px, 7vw, 90px) 0; border-top: 1px solid var(--line); }
+section.block .label { color: var(--blue); }
+.grid { display: grid; gap: 16px; }
+
+/* логотипы */
+.logos { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-top: 32px; }
+.tile { display: flex; flex-direction: column; border-radius: var(--r); overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+.tile .view { display: grid; place-items: center; padding: 34px 24px; min-height: 170px; }
+.tile .view img { max-height: 90px; width: auto; }
+.tile .view.sq img { max-height: 110px; }
+.tile .meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 16px; border-top: 1px solid var(--line); }
+.tile .meta b { font-size: 14px; }
+.tile .meta span { display: flex; gap: 6px; }
+.on-blue { background: var(--blue); } .on-yellow { background: var(--yellow); } .on-ink { background: var(--ink); } .on-bg { background: var(--bg); }
+.rules { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.rule { padding: 24px; border-radius: var(--r); }
+.rule h3 { margin-bottom: 12px; }
+.rule ul { list-style: none; display: grid; gap: 8px; }
+.rule li { padding-left: 26px; position: relative; }
+.rule.do { background: var(--surface); border: 1px solid var(--line); }
+.rule.do li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 900; }
+.rule.dont { background: var(--ink); color: var(--bg); }
+.rule.dont li::before { content: "✕"; position: absolute; left: 0; color: var(--yellow); font-weight: 900; }
+
+/* цвета */
+.colors { grid-template-columns: 2fr 1.2fr 1fr 1fr; margin-top: 32px; }
+.sw { border-radius: var(--r); padding: 20px; min-height: 260px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.sw b { font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; display: block; }
+.sw code { font: 700 15px/1.6 var(--sans); display: block; }
+.sw small { font-size: 12px; opacity: .8; }
+.sw .copied { font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; opacity: 0; transition: opacity .3s; }
+.sw.ok .copied { opacity: 1; }
+.colors2 { grid-template-columns: repeat(2, 1fr); margin-top: 16px; }
+.colors2 .sw { min-height: 120px; }
+.ratio { display: flex; height: 44px; border-radius: 999px; overflow: hidden; margin-top: 16px; border: 1px solid var(--line); }
+.ratio div { display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.pairs { grid-template-columns: repeat(4, 1fr); margin-top: 16px; }
+.pair { border-radius: 18px; padding: 18px; font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: -0.02em; }
+.pair small { display: block; font: 700 12px/1.4 var(--sans); letter-spacing: 0; text-transform: none; margin-top: 8px; opacity: .85; }
+
+/* шрифты */
+.fonts { grid-template-columns: 1fr 1fr; margin-top: 32px; }
+.spec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+.spec .big { font-size: 96px; line-height: 1; }
+.spec .abc { font-size: 22px; line-height: 1.4; word-break: break-all; }
+.spec .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.scale { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.scale div { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: baseline; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+.scale div:last-child { border-bottom: 0; }
+.scale dt { font-size: 13px; color: var(--muted); }
+.scale dt b { display: block; color: var(--ink); font-size: 14px; }
+
+/* instagram */
+.posts { grid-template-columns: repeat(3, 1fr); margin-top: 32px; }
+.stories { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); margin-top: 16px; }
+.shot { display: flex; flex-direction: column; gap: 10px; }
+.shot img { border-radius: 18px; border: 1px solid var(--line); width: 100%; }
+.shot .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; }
+.formats { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--surface); border-radius: var(--r); overflow: hidden; }
+.formats th, .formats td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+.formats th { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.formats td:nth-child(2) { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+.tablewrap { overflow-x: auto; }
+.tips { grid-template-columns: repeat(3, 1fr); margin-top: 16px; }
+.tip { border-radius: var(--r); padding: 24px; }
+.tip h3 { margin-bottom: 10px; }
+.tip p, .tip li { font-size: 15.5px; }
+.tip ul { padding-left: 18px; display: grid; gap: 6px; }
+.feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; max-width: 300px; }
+.feed i { aspect-ratio: 4/5; border-radius: 4px; }
+
+/* голос */
+.voice { grid-template-columns: 1fr 1fr; margin-top: 32px; }
+
+
+/* canva */
+.cv-links { grid-template-columns: repeat(3, 1fr); margin-top: 32px; }
+.cv-card { display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: var(--r); text-decoration: none; min-height: 230px; transition: transform .3s; }
+.cv-card:hover { transform: translateY(-6px); }
+.cv-card b { font-size: 34px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1; }
+.cv-card span:not(.label) { opacity: .85; font-size: 15px; }
+.cv-card em { margin-top: auto; font-style: normal; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
+.cv-access { margin-top: 16px; padding: 18px 22px; border-radius: 18px; background: var(--sand); font-size: 15.5px; }
+ol.steps { list-style: none; counter-reset: st; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-top: 18px; }
+ol.steps li { counter-increment: st; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+ol.steps li::before { content: counter(st); width: 38px; height: 38px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; font-weight: 900; margin-bottom: 6px; }
+ol.steps b { font-size: 17px; }
+ol.steps span { font-size: 14.5px; color: var(--muted); }
+.cv-list { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-top: 18px; gap: 24px 16px; }
+.cv-t { display: flex; flex-direction: column; gap: 4px; }
+.cv-t b { font-size: 16px; }
+.cv-t span { font-size: 14px; color: var(--muted); }
+@media (max-width: 900px) { .cv-links { grid-template-columns: 1fr; } }
+
+footer { background: var(--blue); color: #fff; padding: 60px 0 0; margin-top: 40px; overflow: hidden; }
+footer .contacts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0 40px; }
+footer .contacts div { padding: 16px; border-radius: 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); }
+footer .contacts b { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .7; }
+footer .contacts span { font-weight: 700; user-select: all; }
+footer .word { font-family: var(--logo); font-weight: 800; color: var(--yellow); font-size: clamp(64px, 17vw, 240px); letter-spacing: -0.07em; line-height: .78; margin-bottom: -0.08em; }
+
+@media (max-width: 900px) {
+  .colors, .fonts, .posts, .tips, .voice, .rules { grid-template-columns: 1fr; }
+  .pairs { grid-template-columns: 1fr 1fr; }
+  footer .contacts { grid-template-columns: 1fr 1fr; }
+  .hero .c1 { width: 300px; right: -120px; top: -80px; opacity: .95; }
+  .hero .c2 { width: 180px; right: 80px; bottom: -100px; }
+  .hero .mk { width: 90px; right: 40px; top: 60px; }
+  .scale div { grid-template-columns: 1fr; gap: 6px; }
+  .spec .big { font-size: 72px; }
+}
+@media (max-width: 560px) {
+  nav.menu { display: none; }
+  .pairs, footer .contacts { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Mazzeru"><img src="files/logo/mazzeru-logo-blue.svg" alt="mazzeru"></a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="#logo">Логотип</a><a href="#colors">Цвета</a><a href="#fonts">Шрифты</a><a href="#graphics">Графика</a><a href="#instagram">Instagram</a><a href="#canva">Canva</a><a href="#video">Видео</a><a href="#voice">Тексты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="c1"></div><div class="c2"></div>
+  <img class="mk" src="files/logo/mazzeru-mark-white.svg" alt="">
+  <div class="wrap">
+    <span class="label" style="color:var(--blue)">Фирменный стиль · BOLD</span>
+    <h1>Mazzeru<br><em>brand</em></h1>
+    <p>Логотипы, цвета, шрифты и шаблоны для Instagram. Всё, чтобы сайт, соцсети и презентации студии выглядели как одно целое.</p>
+    <a class="btn" href="files/mazzeru-brand.zip" download>Скачать всё (ZIP, 30 МБ)<i>↓</i></a>
+  </div>
+</section>
+
+<!-- ЛОГОТИП -->
+<section class="block" id="logo">
+  <div class="wrap">
+    <span class="label">01 · Логотип</span>
+    <h2>Логотип</h2>
+    <p class="note">Знак ZZ — две наклонные Z в круге, основной цвет: синий круг и белые ZZ. Рядом — слово mazzeru строчными (шрифт Unbounded ExtraBold). SVG переведены в кривые — открываются одинаково в Figma, Canva, Illustrator и на любом компьютере. PNG — с прозрачным фоном.</p>
+    <div class="grid logos">
+      <div class="tile"><div class="view on-bg"><img src="files/logo/mazzeru-logo-blue.svg" alt="Основной логотип"></div><div class="meta"><b>Основной</b><span><a class="dl" href="files/logo/mazzeru-logo-blue.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-blue.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-blue"><img src="files/logo/mazzeru-logo-white.svg" alt="Белый логотип"></div><div class="meta"><b>На синем</b><span><a class="dl" href="files/logo/mazzeru-logo-white.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-white.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-yellow"><img src="files/logo/mazzeru-logo-black.svg" alt="Чёрный логотип"></div><div class="meta"><b>На жёлтом / ч/б</b><span><a class="dl" href="files/logo/mazzeru-logo-black.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-black.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-bg"><img src="files/logo/mazzeru-logo-tagline-blue.svg" alt="Логотип с подписью"></div><div class="meta"><b>С подписью</b><span><a class="dl" href="files/logo/mazzeru-logo-tagline-blue.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-tagline-blue.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-bg"><img src="files/logo/mazzeru-logo-on-blue.svg" alt="Логотип на синей плашке"></div><div class="meta"><b>Плашка синяя</b><span><a class="dl" href="files/logo/mazzeru-logo-on-blue.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-on-blue.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-bg"><img src="files/logo/mazzeru-logo-on-yellow.svg" alt="Логотип на жёлтой плашке"></div><div class="meta"><b>Плашка жёлтая</b><span><a class="dl" href="files/logo/mazzeru-logo-on-yellow.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-logo-on-yellow.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-bg sq"><img src="files/logo/mazzeru-mark-blue.svg" alt="Знак синий"></div><div class="meta"><b>Знак</b><span><a class="dl" href="files/logo/mazzeru-mark-blue.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-mark-blue.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-blue sq"><img src="files/logo/mazzeru-mark-white.svg" alt="Знак белый"></div><div class="meta"><b>Знак белый</b><span><a class="dl" href="files/logo/mazzeru-mark-white.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-mark-white.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-ink sq"><img src="files/logo/mazzeru-mark-yellow.svg" alt="Знак жёлтый"></div><div class="meta"><b>Знак жёлтый</b><span><a class="dl" href="files/logo/mazzeru-mark-yellow.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-mark-yellow.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-yellow sq"><img src="files/logo/mazzeru-mark-black.svg" alt="Знак чёрный"></div><div class="meta"><b>Знак чёрный</b><span><a class="dl" href="files/logo/mazzeru-mark-black.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-mark-black.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-bg"><img src="files/logo/mazzeru-wordmark-blue.svg" alt="Слово mazzeru"></div><div class="meta"><b>Только слово</b><span><a class="dl" href="files/logo/mazzeru-wordmark-blue.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-wordmark-blue.png" download>PNG</a></span></div></div>
+      <div class="tile"><div class="view on-blue"><img src="files/logo/mazzeru-wordmark-yellow.svg" alt="Слово mazzeru жёлтое"></div><div class="meta"><b>Слово жёлтое</b><span><a class="dl" href="files/logo/mazzeru-wordmark-yellow.svg" download>SVG</a><a class="dl" href="files/logo/mazzeru-wordmark-yellow.png" download>PNG</a></span></div></div>
+    </div>
+    <div class="rules">
+      <div class="rule do"><h3>Можно</h3><ul>
+        <li>Синий логотип на светлом фоне, белый — на синем, чёрный — на жёлтом.</li>
+        <li>Только знак ZZ, если места меньше 120 px в ширину: аватарки, иконки, водяной знак.</li>
+        <li>Оставлять вокруг логотипа поле не меньше половины высоты знака.</li>
+        <li>В тексте писать «Mazzeru», в логотипе — только строчными «mazzeru».</li>
+      </ul></div>
+      <div class="rule dont"><h3>Нельзя</h3><ul>
+        <li>Растягивать, сжимать, поворачивать слово mazzeru.</li>
+        <li>Перекрашивать в не-фирменные цвета, ставить синий логотип на синий фон.</li>
+        <li>Добавлять тени, обводки, градиенты.</li>
+        <li>Набирать mazzeru другим шрифтом.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦВЕТА -->
+<section class="block" id="colors">
+  <div class="wrap">
+    <span class="label">02 · Цвета</span>
+    <h2>Цвета</h2>
+    <p class="note">Нажмите на цвет, чтобы скопировать HEX.</p>
+    <div class="grid colors">
+      <button class="sw" data-hex="#FAF8F2" style="background:#faf8f2"><span><b>Warm White</b><small>Фон постов и сайта</small></span><span><code>#FAF8F2</code><small>RGB 250 248 242 · CMYK 0 1 3 2</small><em class="copied">Скопировано</em></span></button>
+      <button class="sw" data-hex="#0047FF" style="background:#0047ff;color:#fff;border:0"><span><b>Cobalt Blue</b><small>Главный цвет</small></span><span><code>#0047FF</code><small>RGB 0 71 255 · CMYK 100 72 0 0</small><em class="copied">Скопировано</em></span></button>
+      <button class="sw" data-hex="#E7FF00" style="background:#e7ff00;border:0"><span><b>Acid Yellow</b><small>Акцент</small></span><span><code>#E7FF00</code><small>RGB 231 255 0 · CMYK 9 0 100 0</small><em class="copied">Скопировано</em></span></button>
+      <button class="sw" data-hex="#0B0B0F" style="background:#0b0b0f;color:#faf8f2;border:0"><span><b>Ink</b><small>Текст, тёмные плашки</small></span><span><code>#0B0B0F</code><small>RGB 11 11 15</small><em class="copied">Скопировано</em></span></button>
+    </div>
+    <div class="grid colors2">
+      <button class="sw" data-hex="#5D5C66" style="background:#5d5c66;color:#fff;border:0"><span><b>Muted</b><small>Второстепенный текст</small></span><span><code>#5D5C66</code><em class="copied">Скопировано</em></span></button>
+      <button class="sw" data-hex="#F0EDE3" style="background:#f0ede3"><span><b>Sand</b><small>Подложки, карточки</small></span><span><code>#F0EDE3</code><em class="copied">Скопировано</em></span></button>
+    </div>
+    <h3 style="margin-top:36px">Пропорция в макете</h3>
+    <div class="ratio">
+      <div style="flex:60;background:#faf8f2">60%</div><div style="flex:25;background:#0047ff;color:#fff">25%</div><div style="flex:10;background:#e7ff00">10%</div><div style="flex:5;background:#0b0b0f;color:#fff">5</div>
+    </div>
+    <h3 style="margin-top:36px">Сочетания текста и фона</h3>
+    <div class="grid pairs">
+      <div class="pair" style="background:#faf8f2;color:#0b0b0f;border:1px solid var(--line)">Идеи<small>Чёрный на светлом ✓</small></div>
+      <div class="pair" style="background:#0047ff;color:#fff">Идеи<small>Белый на синем ✓</small></div>
+      <div class="pair" style="background:#e7ff00;color:#0b0b0f">Идеи<small>Чёрный на жёлтом ✓</small></div>
+      <div class="pair" style="background:#0b0b0f;color:#e7ff00">Идеи<small>Жёлтый на чёрном ✓ · жёлтый на белом — нельзя</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ШРИФТЫ -->
+<section class="block" id="fonts">
+  <div class="wrap">
+    <span class="label">03 · Шрифты</span>
+    <h2>Шрифты</h2>
+    <p class="note">Оба бесплатные (лицензия SIL OFL), с кириллицей и казахскими буквами Ә Ғ Қ Ң Ө Ұ Ү Һ І. Установите их на компьютер — и шаблоны в Figma или Canva будут выглядеть как на сайте. В Canva оба есть в библиотеке шрифтов.</p>
+    <div class="grid fonts">
+      <div class="spec">
+        <span class="label" style="color:var(--muted)">Логотип и крупные цифры</span>
+        <div class="big" style="font-family:var(--logo);font-weight:800;letter-spacing:-0.06em;color:var(--blue)">mazzeru</div>
+        <h3 style="font-family:var(--logo);text-transform:none;letter-spacing:-0.02em">Unbounded ExtraBold</h3>
+        <div class="abc" style="font-family:var(--logo);font-weight:800">Аа Әә Ғғ Ққ Ңң Өө Ұұ 0123456789</div>
+        <div class="row"><a class="dl" href="files/fonts/Unbounded-ExtraBold.ttf" download>Скачать TTF</a><a class="dl" href="https://fonts.google.com/specimen/Unbounded" target="_blank" rel="noopener">Google Fonts ↗</a></div>
+      </div>
+      <div class="spec">
+        <span class="label" style="color:var(--muted)">Заголовки, подписи, текст</span>
+        <div class="big" style="font-weight:900;letter-spacing:-0.045em;text-transform:uppercase">Идеи</div>
+        <h3 style="text-transform:none">Inter Tight · Regular, Bold, Black</h3>
+        <div class="abc">Аа Әә Ғғ Ққ Ңң Өө Ұұ Үү Һһ Іі 0123456789</div>
+        <div class="row"><a class="dl" href="files/fonts/InterTight-Black.ttf" download>Black</a><a class="dl" href="files/fonts/InterTight-Bold.ttf" download>Bold</a><a class="dl" href="files/fonts/InterTight-Regular.ttf" download>Regular</a><a class="dl" href="https://fonts.google.com/specimen/Inter+Tight" target="_blank" rel="noopener">Google Fonts ↗</a></div>
+      </div>
+    </div>
+    <dl class="scale">
+      <div><dt><b>Заголовок поста</b>Inter Tight Black · КАПС · трекинг −4% · интерлиньяж 90% · 130–150 px на 1080</dt><dd style="font-weight:900;font-size:clamp(34px,6vw,64px);line-height:.9;letter-spacing:-0.045em;text-transform:uppercase">Идеи в <span style="color:var(--blue)">движение</span></dd></div>
+      <div><dt><b>Надзаголовок</b>Inter Tight Bold · КАПС · разрядка +32% · 24–26 px на 1080</dt><dd class="label" style="font-size:14px">ИИ-видео / Сайты / Мобилография</dd></div>
+      <div><dt><b>Текст</b>Inter Tight Regular · интерлиньяж 150% · 34–40 px на 1080</dt><dd style="font-size:19px">Генерируем ИИ-видео, снимаем Reels и запускаем сайты, которые продают.</dd></div>
+      <div><dt><b>Кнопка</b>Inter Tight ExtraBold · КАПС · разрядка +20%</dt><dd><span class="btn" style="pointer-events:none">Давайте создадим<i>→</i></span></dd></div>
+      <div><dt><b>Цифры-акценты</b>Unbounded ExtraBold · трекинг −5%</dt><dd style="font-family:var(--logo);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-0.05em;color:var(--blue);line-height:1">+38%</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ГРАФИКА -->
+<section class="block" id="graphics">
+  <div class="wrap">
+    <span class="label">04 · Графика</span>
+    <h2>Формы и фото</h2>
+    <div class="grid tips">
+      <div class="tip" style="background:var(--blue);color:#fff"><h3>Круги</h3><p>Главный приём: большой синий и жёлтый круги, выходящие за край кадра. Один-два круга на макет.</p></div>
+      <div class="tip" style="background:var(--yellow)"><h3>Таблетки</h3><p>Кнопки и теги — полностью скруглённые. Кнопка: жёлтая, текст капсом, чёрный кружок со стрелкой →.</p></div>
+      <div class="tip" style="background:var(--ink);color:var(--bg)"><h3>Скругления</h3><p>Карточки и фото — 18–28 px (на 1080 — 32–40 px). Знак ZZ — всегда в круге, повторяет главный приём стиля.</p></div>
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)"><h3>Разделители</h3><p>В подписях — косая черта с пробелами: <b>ИИ-ВИДЕО / САЙТЫ / МОБИЛОГРАФИЯ</b>.</p></div>
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)"><h3>Иконки</h3><p>Линейные, толщина 1.8, скруглённые концы. Эмодзи в дизайне не используем.</p></div>
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)"><h3>Фото</h3><p>Живые кадры с синим небом или яркими огнями, цветокор teal &amp; orange. Часто вписываем фото в круг.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="block" id="instagram">
+  <div class="wrap">
+    <span class="label">05 · Instagram</span>
+    <h2>Instagram</h2>
+    <p class="note">Профиль <b>@mazzeru.studio</b>. Готовые примеры — нажмите «PNG», чтобы скачать в полном размере.</p>
+    <div class="grid posts">
+      <div class="shot"><img src="files/instagram/thumb-post-1-headline.webp" alt="Пост-заголовок" loading="lazy"><div class="meta"><b>Пост-заголовок, анонс</b><a class="dl" href="files/instagram/post-1-headline.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-post-2-case.webp" alt="Пост-кейс" loading="lazy"><div class="meta"><b>Кейс на синем</b><a class="dl" href="files/instagram/post-2-case.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-post-3-tips.webp" alt="Карусель-совет" loading="lazy"><div class="meta"><b>Карусель-совет</b><a class="dl" href="files/instagram/post-3-tips.png" download>PNG</a></div></div>
+    </div>
+    <div class="grid stories">
+      <div class="shot"><img src="files/instagram/thumb-story-template.webp" alt="Сторис" loading="lazy"><div class="meta"><b>Сторис</b><a class="dl" href="files/instagram/story-template.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-ig-avatar.webp" alt="Аватарка" loading="lazy"><div class="meta"><b>Аватарка</b><a class="dl" href="files/instagram/ig-avatar.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-ai.webp" alt="Актуальное ИИ" loading="lazy"><div class="meta"><b>ИИ</b><a class="dl" href="files/instagram/highlight-ai.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-web.webp" alt="Актуальное Сайты" loading="lazy"><div class="meta"><b>Сайты</b><a class="dl" href="files/instagram/highlight-web.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-mobile.webp" alt="Актуальное Мобило" loading="lazy"><div class="meta"><b>Мобило</b><a class="dl" href="files/instagram/highlight-mobile.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-price.webp" alt="Актуальное Цены" loading="lazy"><div class="meta"><b>Цены</b><a class="dl" href="files/instagram/highlight-price.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-team.webp" alt="Актуальное Команда" loading="lazy"><div class="meta"><b>Команда</b><a class="dl" href="files/instagram/highlight-team.png" download>PNG</a></div></div>
+      <div class="shot"><img src="files/instagram/thumb-highlight-reviews.webp" alt="Актуальное Отзывы" loading="lazy"><div class="meta"><b>Отзывы</b><a class="dl" href="files/instagram/highlight-reviews.png" download>PNG</a></div></div>
+    </div>
+
+    <h3 style="margin-top:44px">Размеры</h3>
+    <div class="tablewrap">
+      <table class="formats">
+        <thead><tr><th>Что</th><th>Размер</th><th>Безопасная зона</th></tr></thead>
+        <tbody>
+          <tr><td>Пост и карусель</td><td>1080 × 1350</td><td>Поле 80 px со всех сторон</td></tr>
+          <tr><td>Сторис и Reels</td><td>1080 × 1920</td><td>Сверху 250 px и снизу 340 px без текста</td></tr>
+          <tr><td>Обложка Reels в сетке</td><td>1080 × 1350</td><td>Главное — в центральном квадрате 1080 × 1080</td></tr>
+          <tr><td>Аватарка</td><td>1080 × 1080</td><td>Обрезается в круг</td></tr>
+          <tr><td>Обложка «Актуального»</td><td>1080 × 1920</td><td>Видна центральная окружность ~600 px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid tips" style="margin-top:24px">
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)">
+        <h3>Сетка профиля</h3>
+        <p style="margin-bottom:14px">Чередуйте фон постов по рядам: светлый → синий → жёлтый. Каждый третий пост — кейс с реальной работой.</p>
+        <div class="feed" aria-hidden="true"><i style="background:#faf8f2;border:1px solid var(--line)"></i><i style="background:#0047ff"></i><i style="background:#e7ff00"></i><i style="background:#0047ff"></i><i style="background:#e7ff00"></i><i style="background:#faf8f2;border:1px solid var(--line)"></i><i style="background:#e7ff00"></i><i style="background:#faf8f2;border:1px solid var(--line)"></i><i style="background:#0047ff"></i></div>
+      </div>
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)">
+        <h3>Текст под постом</h3>
+        <ul>
+          <li>Первая строка — крючок до 60 символов.</li>
+          <li>2–4 коротких абзаца.</li>
+          <li>Призыв: «Напишите «хочу» в директ».</li>
+          <li>5–8 хэштегов в конце: #mazzeru #астана #мобилография #ии_видео #lovestory #сайтподключ #reels</li>
+        </ul>
+      </div>
+      <div class="tip" style="background:var(--surface);border:1px solid var(--line)">
+        <h3>Reels</h3>
+        <ul>
+          <li>Первые 2 секунды — крючок текстом: Inter Tight Black капсом, белый на синей плашке.</li>
+          <li>Цветокор teal &amp; orange или golden hour.</li>
+          <li>В конце — знак ZZ на синем на полсекунды.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CANVA -->
+<section class="block" id="canva">
+  <div class="wrap">
+    <span class="label">06 · Canva</span>
+    <h2>Шаблоны Canva</h2>
+    <p class="note">Готовые редактируемые шаблоны в фирменном стиле. Меняйте только тексты и фото — цвета, шрифты, отступы и круги уже настроены.</p>
+
+    <div class="grid cv-links">
+      <a class="cv-card" href="https://www.canva.com/d/eyTGiV17p5nKTLe" target="_blank" rel="noopener" style="background:var(--blue);color:#fff">
+        <span class="label" style="color:var(--yellow)">5 страниц · 1080 × 1350</span>
+        <b>Посты и карусели</b>
+        <span>Заголовок, кейс, обложка карусели, слайд карусели, результат</span>
+        <em>Открыть в Canva ↗</em>
+      </a>
+      <a class="cv-card" href="https://www.canva.com/d/EPXkOSOCIToRz_G" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--ink)">
+        <span class="label">8 страниц · 1080 × 1920</span>
+        <b>Сторис и «Актуальное»</b>
+        <span>2 сторис и 6 обложек «Актуального»</span>
+        <em>Открыть в Canva ↗</em>
+      </a>
+      <a class="cv-card" href="https://www.canva.com/d/vLeEZnWA22acxor" target="_blank" rel="noopener" style="background:var(--ink);color:var(--bg)">
+        <span class="label" style="color:var(--yellow)">2 страницы · 1080 × 1080</span>
+        <b>Аватарка</b>
+        <span>Синяя и жёлтая версии знака</span>
+        <em>Открыть в Canva ↗</em>
+      </a>
+    </div>
+
+    <div class="cv-access">
+      <b>Нет доступа по ссылке?</b> Canva откроет шаблон только тем, с кем им поделились. Напишите Алдияру в Telegram <span style="user-select:all">@aldeke7122</span> — он добавит вашу почту в «Поделиться». Не редактируйте оригинал: сначала сделайте копию (шаг 2 ниже).
+    </div>
+
+    <h3 style="margin-top:48px">Как сделать пост за 5 минут</h3>
+    <ol class="steps">
+      <li><b>Откройте шаблон</b><span>Нажмите нужную карточку выше и войдите в Canva.</span></li>
+      <li><b>Сделайте копию</b><span>«Файл» → «Создать копию». Работайте только в копии — оригинал остаётся чистым для всех.</span></li>
+      <li><b>Оставьте нужную страницу</b><span>Удалите лишние страницы или скопируйте нужную: правый клик на странице → «Дублировать».</span></li>
+      <li><b>Замените текст</b><span>Двойной клик по тексту. Заголовок — 2–4 слова, одно слово синим. Шрифт и размер не меняйте.</span></li>
+      <li><b>Замените фото</b><span>Перетащите своё фото прямо на старое — оно встанет в ту же рамку. Двойной клик — сдвинуть кадр.</span></li>
+      <li><b>Проверьте</b><span>Текст не заходит на круги и логотип, от краёв не меньше 80 px, нет лишних цветов.</span></li>
+      <li><b>Скачайте</b><span>«Поделиться» → «Скачать» → PNG. Карусель скачивается сразу всеми страницами по порядку.</span></li>
+    </ol>
+
+    <h3 style="margin-top:48px">Какой шаблон для чего</h3>
+    <div class="grid cv-list">
+      <div class="shot"><img src="canva/thumbs/post-1.webp" alt="Пост-заголовок" loading="lazy"><div class="cv-t"><b>Пост · Заголовок</b><span>Анонсы, новости студии, запуск услуги. Меняйте надзаголовок, 3 строки заголовка и текст кнопки.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/post-2.webp" alt="Пост-кейс" loading="lazy"><div class="cv-t"><b>Пост · Кейс</b><span>Готовая работа. Замените скриншот или кадр, название проекта, одну строку описания и 2 тега.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/post-3.webp" alt="Обложка карусели" loading="lazy"><div class="cv-t"><b>Карусель · Обложка</b><span>Советы и разборы. Заголовок + 3 пункта на плашках. В углу — счётчик слайдов «01 / 05».</span></div></div>
+      <div class="shot"><img src="canva/thumbs/post-4.webp" alt="Слайд карусели" loading="lazy"><div class="cv-t"><b>Карусель · Слайд</b><span>Внутренние слайды: большой номер, заголовок пункта и 2–3 предложения. Дублируйте для каждого пункта.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/post-5.webp" alt="Пост-результат" loading="lazy"><div class="cv-t"><b>Пост · Результат</b><span>Цифры клиента: «+38%», «120K», «×2». Одна цифра, подпись 2 строки, короткое пояснение.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/story-1.webp" alt="Сторис новый кейс" loading="lazy"><div class="cv-t"><b>Сторис · Новый кейс</b><span>Анонс нового поста. Фото в круге, кнопку «Смотреть» замените стикером-ссылкой Instagram.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/story-2.webp" alt="Сторис анонс" loading="lazy"><div class="cv-t"><b>Сторис · Анонс</b><span>Предложения и акции. Под текстом оставлено место для стикера опроса или вопроса.</span></div></div>
+      <div class="shot"><img src="canva/thumbs/story-3.webp" alt="Обложки Актуального" loading="lazy"><div class="cv-t"><b>«Актуальное»</b><span>6 обложек: ИИ, Сайты, Мобило, Цены, Команда, Отзывы. Скачайте PNG и загрузите в профиль через «Редактировать актуальное».</span></div></div>
+      <div class="shot"><img src="canva/thumbs/avatar-1.webp" alt="Аватарка" loading="lazy"><div class="cv-t"><b>Аватарка</b><span>Основная — синяя. Жёлтую используйте для праздничных и сезонных смен аватарки.</span></div></div>
+    </div>
+
+    <div class="grid rules" style="margin-top:32px">
+      <div class="rule do"><h3>Делайте</h3><ul>
+        <li>Всегда работайте в копии шаблона.</li>
+        <li>Держите текст внутри поля 80 px от краёв.</li>
+        <li>Меняйте цвет плашек только между синим, жёлтым, чёрным и светлым.</li>
+        <li>Фото — живые, яркие; в кругах и рамках из шаблона.</li>
+        <li>Скачивайте в PNG, не в JPG — так чётче текст.</li>
+      </ul></div>
+      <div class="rule dont"><h3>Не делайте</h3><ul>
+        <li>Не меняйте шрифты: заголовки — Inter Tight, цифры — Unbounded.</li>
+        <li>Не добавляйте тени, градиенты и эффекты Canva.</li>
+        <li>Не ставьте жёлтый текст на светлый фон.</li>
+        <li>Не растягивайте логотип и не перекрашивайте знак ZZ.</li>
+        <li>Не публикуйте, пока пост не проверил второй человек.</li>
+      </ul></div>
+    </div>
+
+    <div class="cv-access" style="margin-top:24px">
+      <b>Нет шаблона под задачу?</b> Возьмите ближайший по смыслу и сохраните сетку: логотип сверху слева, надзаголовок капсом, большой заголовок, внизу — кнопка или подпись.
+    </div>
+  </div>
+</section>
+
+<!-- ВИДЕО -->
+<section class="block" id="video">
+  <div class="wrap">
+    <span class="label">07 · Видео</span>
+    <h2>Интро, аутро и Reels</h2>
+    <p class="note">Два ролика с оригинальной музыкой (фонк, 140 BPM). Музыка написана с нуля, поэтому Instagram и YouTube не заблокируют видео за авторские права.</p>
+
+    <h3 style="margin-top:36px">Интро · 7,7 с · ставьте в начало</h3>
+    <p class="note">Тёмный экран с сеткой → на дропе врываются ZZ → логотип и подпись → стоп-кадр со вспышкой → финальная карточка. Режьте следующий кадр ролика ровно по концу интро.</p>
+    <div class="grid" style="grid-template-columns:2fr 1fr;margin-top:20px;align-items:start">
+      <div class="shot"><video src="files/video/mazzeru-intro-16x9.mp4" controls playsinline preload="metadata" style="width:100%;border-radius:18px;background:#0047ff"></video><div class="meta"><b>16:9 · 1920×1080 · YouTube, презентации</b><a class="dl" href="files/video/mazzeru-intro-16x9.mp4" download>MP4</a></div></div>
+      <div class="shot"><video src="files/video/mazzeru-intro-9x16.mp4" controls playsinline preload="metadata" style="width:100%;border-radius:18px;background:#0047ff"></video><div class="meta"><b>9:16 · Reels, сторис</b><a class="dl" href="files/video/mazzeru-intro-9x16.mp4" download>MP4</a></div></div>
+    </div>
+    <p style="margin-top:16px"><a class="dl" href="files/video/mazzeru-intro-music.wav" download>Музыка интро · WAV</a></p>
+
+    <h3 style="margin-top:48px">Аутро · 6,4 с · ставьте в конец</h3>
+    <p class="note">Синяя шторка закрывает ролик → «Давайте создадим» и контакты (Instagram, Telegram, WhatsApp, сайт) → всё собирается в логотип. Совет: сделайте короткий кроссфейд (0,1–0,2 с) между последним кадром ролика и аутро, а музыку ролика уведите в тишину к началу шторки.</p>
+    <div class="grid" style="grid-template-columns:2fr 1fr;margin-top:20px;align-items:start">
+      <div class="shot"><video src="files/video/mazzeru-outro-16x9.mp4" controls playsinline preload="metadata" style="width:100%;border-radius:18px;background:#0047ff"></video><div class="meta"><b>16:9 · 1920×1080 · YouTube, презентации</b><a class="dl" href="files/video/mazzeru-outro-16x9.mp4" download>MP4</a></div></div>
+      <div class="shot"><video src="files/video/mazzeru-outro-9x16.mp4" controls playsinline preload="metadata" style="width:100%;border-radius:18px;background:#0047ff"></video><div class="meta"><b>9:16 · Reels, сторис</b><a class="dl" href="files/video/mazzeru-outro-9x16.mp4" download>MP4</a></div></div>
+    </div>
+    <p style="margin-top:16px"><a class="dl" href="files/video/mazzeru-outro-music.wav" download>Музыка аутро · WAV</a></p>
+
+    <h3 style="margin-top:56px">Первый Reels · 34 с · знакомство со студией</h3>
+    <p class="note">Кто мы, какие проблемы решаем и какие услуги даём. Для Instagram — только лайм и чёрный. Анимация смонтирована по треку <b>Fred again.. — Victory Lap Five</b> (140 BPM): удары, дропы и появление текста совпадают с музыкой, если трек идёт с самого начала.</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:20px;align-items:start">
+      <div class="shot"><video src="files/video/mazzeru-reel-01-no-music.mp4" poster="files/video/mazzeru-reel-01-cover.png" controls playsinline preload="none" style="width:100%;border-radius:18px;background:#0b0b0f"></video><div class="meta"><b>9:16 · 1080×1920 · без звука</b><a class="dl" href="files/video/mazzeru-reel-01-no-music.mp4" download>MP4</a></div></div>
+      <div class="shot"><img src="files/video/mazzeru-reel-01-cover.png" alt="Обложка Reels"><div class="meta"><b>Обложка</b><a class="dl" href="files/video/mazzeru-reel-01-cover.png" download>PNG</a></div></div>
+    </div>
+    <h3 style="margin-top:32px">Как выложить</h3>
+    <ol style="line-height:1.8;padding-left:20px">
+      <li>Скачайте MP4 (он без звука — чужую музыку на открытый сайт не выкладываем).</li>
+      <li>Instagram → «+» → Reels → выберите видео.</li>
+      <li>«Аудио» → найдите <b>Victory Lap Five</b> (Fred again..) → начало фрагмента поставьте на <b>0:00</b>. Тогда первые четыре удара совпадут с появлением слов «ВАШ БИЗНЕС НЕ ЗАМЕЧАЮТ?», а дроп на 15-й секунде — с логотипом.</li>
+      <li>Громкость исходного звука видео — 0 (его и так нет), громкость трека — 100.</li>
+      <li>Обложка: «Изменить обложку» → «Добавить из галереи» → PNG выше.</li>
+      <li>Текст под видео — ниже, отметьте геолокацию «Астана».</li>
+    </ol>
+    <h3 style="margin-top:32px">Текст под Reels</h3>
+    <p style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;line-height:1.7">Mazzeru — digital-студия из Астаны<br>ИИ-видео · Мобилография · Сайты и лендинги под ключ.<br>Делаем контент, который досматривают, и сайты, которые приводят заявки.<br>Пишите в Direct «СТАРТ» — обсудим ваш проект.<br>#mazzeru #астана #мобилография #ии_видео #сайтподключ #reels</p>
+  </div>
+</section>
+
+<!-- ТЕКСТЫ -->
+<section class="block" id="voice">
+  <div class="wrap">
+    <span class="label">08 · Тексты</span>
+    <h2>Голос бренда</h2>
+    <div class="grid voice">
+      <div class="rule do"><h3>Пишем так</h3><ul>
+        <li>Коротко: заголовки 2–4 слова капсом.</li>
+        <li>«Мы» о себе, «вы» клиенту.</li>
+        <li>Результат цифрами: «+38% подписчиков», «тизер в тот же день».</li>
+        <li>Три языка: казахский, русский, английский. Порядок — KZ · RU · ENG.</li>
+      </ul></div>
+      <div class="rule dont"><h3>Не пишем</h3><ul>
+        <li>Канцелярит и длинные вступления.</li>
+        <li>«Лучшие в городе», «уникальное предложение».</li>
+        <li>Много восклицательных знаков.</li>
+        <li>Эмодзи в заголовках.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="label" style="color:var(--yellow)">Контакты студии</span>
+    <div class="contacts">
+      <div><b>Instagram</b><span>@mazzeru.studio</span></div>
+      <div><b>Telegram</b><span>@aldeke7122</span></div>
+      <div><b>Телефон, WhatsApp</b><span>+7 776 198 4474</span></div>
+      <div><b>Почта</b><span>mazzeru.studio@gmail.com</span></div>
+    </div>
+    <div class="word" aria-hidden="true">mazzeru</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".sw").forEach((b) => b.addEventListener("click", () => {
+  const hex = b.dataset.hex;
+  const done = () => { b.classList.add("ok"); setTimeout(() => b.classList.remove("ok"), 1400); };
+  if (navigator.clipboard) navigator.clipboard.writeText(hex).then(done).catch(() => {});
+}));
+</script>
+</body>
+</html>
+

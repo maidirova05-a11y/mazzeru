@@ -1,0 +1,20 @@
+# служебное
+.vercel
+.claude
+__pycache__/
+*.pyc
+
+# тяжёлое и производное — пересобирается скриптами
+brand/mazzeru-brand.zip
+brand/site/files/mazzeru-brand.zip
+brand/site/files/video/
+brand/video/*.mp4
+brand/video/*.wav
+brand/video/*.png
+brand/instagram/carousel/*.mp4
+brand/instagram/carousel/*.zip
+
+# чужой трек (Fred again.. — Victory Lap Five) и его фрагменты — не публикуем
+*_track*.wav
+*Victory*Lap*
+*.mp3

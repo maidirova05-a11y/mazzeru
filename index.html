@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mazzeru — ИИ контент, мобилография и сайты</title>
+  <meta name="description" content="Digital-студия из Астаны: ИИ-видео и love story, мобилография и Reels, разработка сайтов и лендингов.">
+  <meta property="og:title" content="Mazzeru — ИИ контент, мобилография и сайты">
+  <meta property="og:description" content="Digital-студия из Астаны: ИИ-видео и love story, мобилография и Reels, разработка сайтов и лендингов.">
+  <meta property="og:image" content="assets/img/og.png">
+  <meta name="theme-color" content="#0047ff">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>try{var d=document.documentElement,t=localStorage.getItem("theme");if(t)d.dataset.theme=t;var q=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang");if(q)d.lang=q==="kz"?"kk":q;if(sessionStorage.getItem("intro")||/[?&]nointro/.test(location.search)||matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("intro-seen");if(sessionStorage.getItem("wipe")==="1")d.classList.add("wiping")}catch(e){}</script>
+</head>
+<body data-page="home">
+  <!-- Интро: ZZ-знак и логотип -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro-slash"></div>
+    <div class="intro-stage">
+      <svg class="intro-mark" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg>
+      <div class="intro-word"><span>m</span><span>a</span><span>z</span><span>z</span><span>e</span><span>r</span><span>u</span></div>
+    </div>
+    <span class="intro-tag label">AI VIDEO / WEB / MOBILE FILM</span>
+  </div>
+  <div class="wipe" aria-hidden="true"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg></div>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Mazzeru"><svg class="mark" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg><span class="wordmark">mazzeru</span></a>
+      <nav class="nav" aria-label="Menu">
+        <a href="ai-content.html" data-i18n="nav.ai">ИИ контент</a>
+        <a href="websites.html" data-i18n="nav.web">Сайты</a>
+        <a href="mobilography.html" data-i18n="nav.mobile">Мобилография</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="kz">KZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">ENG</button>
+        </div>
+        <button class="icon-btn" type="button" data-theme-toggle data-i18n-aria="ui.theme" aria-label="Сменить тему">
+          <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+          <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a class="btn btn--sm" href="#contacts" data-magnetic><span data-i18n="hdr.cta">Обсудить проект</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <button class="burger" type="button" data-burger data-i18n-aria="ui.menu" aria-label="Меню" aria-expanded="false"><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mmenu" id="mmenu">
+    <nav>
+      <a href="index.html" class="active" data-i18n="nav.home">Главная</a>
+      <a href="ai-content.html" data-i18n="nav.ai">ИИ контент</a>
+      <a href="websites.html" data-i18n="nav.web">Сайты</a>
+      <a href="mobilography.html" data-i18n="nav.mobile">Мобилография</a>
+      <a href="#contacts" data-close-menu data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div class="mmenu-row">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="kz">KZ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">ENG</button>
+      </div>
+      <a class="btn btn--sm" href="#" data-wa><span data-i18n="cta.btn">Написать нам</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-text">
+          <span class="hero-eyebrow"><span class="mini"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg></span><span data-i18n="home.city">Астана, Казахстан</span><span class="sep"></span><span class="clock" data-clock>--:--</span></span>
+          <h1 data-lines data-i18n="home.h1">Идеи<br>в&nbsp;<em>движение</em></h1>
+          <p class="hero-tag label label--muted" data-i18n="home.tagline">ИИ-видео / Сайты / Мобилография</p>
+          <p class="hero-lead" data-i18n="home.lead">Команда из Астаны: генерируем ИИ-видео и love story, снимаем Reels на телефон и запускаем сайты, которые продают.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#" data-wa data-magnetic><span data-i18n="hero.create">Давайте создадим</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+            <a class="link-arrow" href="#work"><span data-i18n="hero.works">Смотреть работы</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <div class="hero-visual hero-visual--home" data-parallax>
+<!--visual-home-->          <div class="hero-sun"></div>
+          <div class="hero-circle">
+            <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+            <svg class="ring-text" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="rt-home" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/></defs><text><textPath href="#rt-home">AI VIDEO • WEB • MOBILE FILM • AI VIDEO • WEB • MOBILE FILM •</textPath></text></svg>
+            <div class="core"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg></div>
+          </div>
+          <div class="vis vis-prompt">
+            <div class="vp-head"><span class="vp-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.3L21 10l-6.8 1.9L12 18l-2.2-6.1L3 10l6.8-1.7z"/></svg></span><span data-i18n="vis.promptH">ИИ · промпт</span><span class="vp-live"></span></div>
+            <p class="vp-text"><span data-type="vis.prompt"></span><i class="caret"></i></p>
+            <div class="vp-bar"><i data-bar></i></div>
+            <div class="vp-foot"><span data-i18n="vis.gen">Генерация</span><b data-pct>0%</b></div>
+            <div class="vp-frames"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="vis vis-phone">
+            <div class="ph-screen"><div class="ph-footage"></div>
+              <div class="ph-top"><span class="rec"><i></i>REC</span><span data-timecode>00:00</span></div>
+              <span class="ph-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg></span>
+              <div class="ph-bottom"><b>Reels</b><span class="ph-like">♥ <em data-likes>1.2K</em></span></div>
+              <div class="ph-prog"><i></i></div>
+            </div>
+          </div>
+          <div class="vis vis-browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span class="url">mazzeru.kz</span></div>
+            <div class="vb-body"><div class="sk"><b class="sk-nav"></b><b class="sk-h"></b><b class="sk-h short"></b><b class="sk-l"></b><b class="sk-l short"></b><b class="sk-btn"></b></div><div class="sk-img"></div></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="bands" aria-hidden="true">
+      <div class="band band--yellow" data-marquee="mq.home"></div>
+      <div class="band band--blue" data-marquee="mq.home"></div>
+    </div>
+
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.services">Услуги</span><h2 class="h2" data-i18n="home.dirs">Три направления</h2></div>
+          <p class="sec-note" data-i18n="home.dirsNote">Одна команда закрывает контент, съёмку и сайт — в едином стиле.</p>
+        </div>
+        <div class="dirs">
+          <a class="dir dir--ai" href="ai-content.html" data-reveal>
+            <div class="dir-orb"></div><div class="dir-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+            <div class="dir-top"><span class="dir-num">01 /</span><span class="dir-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+            <div><h3 data-i18n="nav.ai">ИИ контент</h3><p data-i18n="home.dir.ai">Love story, реклама, ИИ-аватары и клипы — без съёмочной группы.</p></div>
+          </a>
+          <a class="dir dir--web" href="websites.html" data-reveal>
+            <div class="dir-orb"></div><div class="dir-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19M9 14l-2 1.5L9 17M15 14l2 1.5-2 1.5"/></svg></div>
+            <div class="dir-top"><span class="dir-num">02 /</span><span class="dir-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+            <div><h3 data-i18n="nav.web">Сайты</h3><p data-i18n="home.dir.web">Лендинги, корпоративные сайты и сайты мероприятий на трёх языках.</p></div>
+          </a>
+          <a class="dir dir--mobile" href="mobilography.html" data-reveal>
+            <div class="dir-orb"></div><div class="dir-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="9" r="2.6"/><path d="M10.5 18h3"/></svg></div>
+            <div class="dir-top"><span class="dir-num">03 /</span><span class="dir-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+            <div><h3 data-i18n="nav.mobile">Мобилография</h3><p data-i18n="home.dir.mobile">Reels, контент-дни и события — снято на iPhone с кино-цветокором.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="stats" data-reveal>
+          <div class="stat"><b data-count="120" data-suffix="+">0</b><span data-i18n="home.stat0">проектов</span></div>
+          <div class="stat"><b data-count="4">0</b><span data-i18n="home.stat1">основателя</span></div>
+          <div class="stat"><b data-count="3">0</b><span data-i18n="home.stat2">языка</span></div>
+          <div class="stat"><b data-count="48" data-suffix="ч">0</b><span data-i18n="home.stat3">до первого черновика</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.work">Портфолио</span><h2 class="h2" data-i18n="home.portH">Наши проекты</h2></div>
+          <div class="filters" data-filters></div>
+        </div>
+        <div class="orbit" data-orbit="all">
+          <div class="orbit-sphere"><span class="os-ring"></span><span class="os-ring os-ring--2"></span><div class="os-ball"><svg class="" viewBox="45 45 1160 1160" aria-hidden="true"><circle class="mk-bg" cx="625" cy="625" r="580"/><path class="mk-z mk-z1" d="M365 491 L681 491 L603 573 L285 573Z M447 587 L587 587 L443 697 L607 697 L521 783 L222 783 L292 710 L320 686Z"/><path class="mk-z mk-z2" d="M729 491 L1036 491 L965 566 L940 588 L797 697 L993 697 L889 783 L561 783 L630 716 L648 700 L808 573 L649 573Z"/></svg><b data-orbit-count>0</b><span data-i18n="orbit.projects">проектов</span></div></div>
+          <div class="orbit-info" aria-live="polite"></div>
+          <p class="orbit-hint" data-i18n="orbit.hint">Наведите курсор или нажмите на проект</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap duo">
+        <div class="panel panel--blue" data-reveal>
+          <span class="label" data-i18n="home.c1lbl">Цель</span>
+          <h3 data-i18n="home.c1">Наша цель</h3>
+          <ul class="bullets">
+              <li data-i18n="home.c1.0"><b>Сделать премиальный контент доступным</b> — для малого бизнеса и частных клиентов</li>
+              <li data-i18n="home.c1.1">Помочь брендам Казахстана <b>выделяться</b> в ленте и в поиске</li>
+              <li data-i18n="home.c1.2">Превращать <b>личные истории</b> в фильмы, которые пересматривают</li>
+          </ul>
+        </div>
+        <div class="panel panel--ink" data-reveal>
+          <span class="label" data-i18n="home.c2lbl">Стратегия</span>
+          <h3 data-i18n="home.c2">Наша стратегия</h3>
+          <ul class="bullets">
+              <li data-i18n="home.c2.0"><b>ИИ + живая съёмка</b> — скорость нейросетей и честность реальных кадров</li>
+              <li data-i18n="home.c2.1"><b>Всё в одном месте:</b> контент, сайт и упаковка бренда</li>
+              <li data-i18n="home.c2.2"><b>Результат в цифрах</b> — охваты, заявки, продажи</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.why">Почему мы</span><h2 class="h2" data-i18n="home.whyH">Почему с нами удобно</h2></div>
+          
+        </div>
+        <ul class="why">
+          <li data-reveal><span data-icon="clock"></span><div><b data-i18n="home.why0">Быстро</b><span data-i18n="home.why0d">Первый черновик — за 48 часов</span></div></li>
+          <li data-reveal><span data-icon="layers"></span><div><b data-i18n="home.why1">Под ключ</b><span data-i18n="home.why1d">Контент, сайт и упаковка — одна команда</span></div></li>
+          <li data-reveal><span data-icon="shield"></span><div><b data-i18n="home.why2">Прозрачно</b><span data-i18n="home.why2d">Договор, фиксированная цена и сроки</span></div></li>
+          <li data-reveal><span data-icon="chat"></span><div><b data-i18n="home.why3">На связи</b><span data-i18n="home.why3d">Отдельный чат проекта и отчёты по этапам</span></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="wrap">
+        <div class="sec-head" data-reveal>
+          <div><span class="label" data-i18n="lbl.team">Команда</span><h2 class="h2" data-i18n="home.teamH">Основатели</h2></div>
+          <p class="sec-note" data-i18n="home.teamNote">Нажмите на карточку — откроется Instagram.</p>
+        </div>
+        <div class="team" data-team></div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap faq-grid">
+        <div data-reveal>
+          <span class="label" data-i18n="lbl.faq" style="color:var(--blue);display:block;margin-bottom:18px">Вопросы</span>
+          <h2 class="h2" data-i18n="faq.h">Частые вопросы</h2>
+          <p class="sec-note" data-i18n="faq.note" style="margin:22px 0 28px">Не нашли ответ? Напишите — ответим за 15 минут.</p>
+          <a class="btn btn--blue" href="#" data-wa data-magnetic><span data-i18n="cta.btn">Написать нам</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <div class="faq" data-faq="home"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="contact" id="contacts" data-contacts></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
