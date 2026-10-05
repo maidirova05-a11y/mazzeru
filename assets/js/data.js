@@ -40,8 +40,8 @@ window.SITE = {
   brand: "mazzeru",
 
   contacts: {
-    phone: "+7 776 198 4474",
-    whatsapp: "77761984474",          // номер без + и пробелов
+    phone: "+7 707 172 3752",
+    whatsapp: "77071723752",          // номер без + и пробелов
     telegram: "aldeke7122",              // username без @
     instagram: "mazzeru.studio",
     email: "mazzeru.studio@gmail.com",
@@ -162,6 +162,18 @@ window.SITE = {
                "Астанадағы балаларға арналған кескіндеме академиясының сайты: бейне-интро, оқушылар жұмыстарының галереясы және топтарға жазылу.",
                "Website for a children’s painting academy in Astana: video intro, student gallery and group enrollment."),
       meta: [m(L.client, "AZ Group"), m(L.field, tx("Творчество", "Шығармашылық", "Arts"))] },
+    { cat: "web", status: L.custom, image: "assets/img/projects/fibonacci.webp", link: "https://fibonacci-olympiads.kz",
+      title: "Fibonacci Olympiad",
+      desc: tx("Сайт международной олимпиады по математике для 3–12 классов: категории, календарь двух этапов, призы, FAQ и регистрация. Анимированная заставка, спираль Фибоначчи и три языка.",
+               "3–12 сыныптарға арналған халықаралық математика олимпиадасының сайты: санаттар, екі кезеңнің күнтізбесі, жүлделер, FAQ және тіркеу. Анимациялық заставка, Фибоначчи спиралі және үш тіл.",
+               "Website for an international maths olympiad for grades 3–12: categories, two-stage calendar, prizes, FAQ and registration. Animated intro, Fibonacci spiral and three languages."),
+      meta: [m(L.client, "AZ Group"), m(L.field, tx("Образование", "Білім", "Education"))] },
+    { cat: "web", status: L.custom, image: "assets/img/projects/atlantia.webp", link: "https://atlantia-olympiads.kz",
+      title: "Atlantia STEM Olympiads",
+      desc: tx("Сайт международных STEM-олимпиад по пяти предметам: этапы, положение, призы, оплата и регистрация. Подводная тема, предметы на орбите вокруг логотипа и три языка.",
+               "Бес пән бойынша халықаралық STEM-олимпиадалар сайты: кезеңдер, ереже, жүлделер, төлем және тіркеу. Су астындағы тақырып, логотип айналасындағы пәндер орбитасы және үш тіл.",
+               "Website for international STEM olympiads in five subjects: stages, rules, prizes, payment and registration. Underwater theme, subjects orbiting the logo and three languages."),
+      meta: [m(L.client, "AZ Group"), m(L.field, tx("Образование", "Білім", "Education"))] },
   ],
 
   /* Основатели. photo — путь к фото, instagram — ник без @.
