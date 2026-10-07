@@ -174,6 +174,12 @@ window.SITE = {
                "Бес пән бойынша халықаралық STEM-олимпиадалар сайты: кезеңдер, ереже, жүлделер, төлем және тіркеу. Су астындағы тақырып, логотип айналасындағы пәндер орбитасы және үш тіл.",
                "Website for international STEM olympiads in five subjects: stages, rules, prizes, payment and registration. Underwater theme, subjects orbiting the logo and three languages."),
       meta: [m(L.client, "AZ Group"), m(L.field, tx("Образование", "Білім", "Education"))] },
+    { cat: "web", status: L.custom, image: "assets/img/projects/uralmashservice.webp", link: "https://uralmashservice.kz",
+      title: "Uralmashservice",
+      desc: tx("Корпоративный сайт поставщика оборудования и услуг для нефтегазовой отрасли из Уральска: о компании, направления работы и контакты для заявок.",
+               "Орал қаласындағы мұнай-газ саласына арналған жабдықтар мен қызметтер жеткізушісінің корпоративтік сайты: компания туралы, жұмыс бағыттары және өтінімге арналған байланыстар.",
+               "Corporate website for an oil & gas equipment and services supplier from Uralsk: company profile, areas of work and contacts for requests."),
+      meta: [m(L.field, tx("Нефтегаз", "Мұнай-газ", "Oil & Gas"))] },
   ],
 
   /* Основатели. photo — путь к фото, instagram — ник без @.
