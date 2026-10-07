@@ -176,10 +176,10 @@ window.SITE = {
       meta: [m(L.client, "AZ Group"), m(L.field, tx("Образование", "Білім", "Education"))] },
     { cat: "web", status: L.custom, image: "assets/img/projects/uralmashservice.webp", link: "https://uralmashservice.kz",
       title: "Uralmashservice",
-      desc: tx("Корпоративный сайт поставщика оборудования и услуг для нефтегазовой отрасли из Уральска: о компании, направления работы и контакты для заявок.",
-               "Орал қаласындағы мұнай-газ саласына арналған жабдықтар мен қызметтер жеткізушісінің корпоративтік сайты: компания туралы, жұмыс бағыттары және өтінімге арналған байланыстар.",
-               "Corporate website for an oil & gas equipment and services supplier from Uralsk: company profile, areas of work and contacts for requests."),
-      meta: [m(L.field, tx("Нефтегаз", "Мұнай-газ", "Oil & Gas"))] },
+      desc: tx("Сайт поставщика промышленного оборудования и MRO-материалов (Уральск): каталог продукции, партнёры-производители, проекты и форма заявки. Три языка.",
+               "Өнеркәсіптік жабдық пен MRO-материалдар жеткізушісінің сайты (Орал): өнім каталогы, өндіруші-серіктестер, жобалар және өтінім формасы. Үш тіл.",
+               "Website for an industrial equipment and MRO supplier (Uralsk): product catalog, manufacturer partners, projects and a request form. Three languages."),
+      meta: [m(L.client, tx("Уралмашсервис", "Уралмашсервис", "Uralmashservice")), m(L.field, tx("Промышленность", "Өнеркәсіп", "Industry"))] },
   ],
 
   /* Основатели. photo — путь к фото, instagram — ник без @.
