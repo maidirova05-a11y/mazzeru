@@ -193,9 +193,9 @@ window.SITE = {
       role: tx("ИИ-креатор", "ИИ-креатор", "AI Creator") },
     { name: "Zhumakhan Beibarys Dulatuly", instagram: "b_d_no_", photo: "assets/img/team/beibarys.webp", tag: "mobile", color: "mobile",
       role: tx("Мобилограф · ИИ-креатор", "Мобилограф · ИИ-креатор", "Mobilographer · AI Creator") },
-    { name: "Dzhambul Serik Olzhasuly", photo: "assets/img/team/dzhambul.webp", tag: "ai", color: "ai",
+    { name: "Dzhambul Serik Olzhasuly", instagram: "serik_dzhambul", photo: "assets/img/team/dzhambul.webp", tag: "ai", color: "ai",
       role: tx("ИИ-креатор", "ИИ-креатор", "AI Creator") },
-    { name: "Amantaev Maksat Sabitovich", photo: "assets/img/team/maksat.webp", tag: "web", color: "web",
+    { name: "Amantaev Maksat Sabitovich", instagram: "amantaevms", photo: "assets/img/team/maksat.webp", tag: "web", color: "web",
       role: tx("Backend-разработчик", "Backend-әзірлеуші", "Backend Developer") },
   ],
 
