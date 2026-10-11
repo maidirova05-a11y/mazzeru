@@ -476,7 +476,7 @@ button.media { text-align: left; }
 .stack span:hover { background: var(--blue); border-color: var(--blue); color: #fff; transform: translateY(-4px) rotate(-2deg); }
 
 /* Команда: круглые аватары с вращающимся текстом */
-.team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; perspective: 1200px; }
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; perspective: 1200px; }
 .founder {
   position: relative; overflow: hidden; isolation: isolate;
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
