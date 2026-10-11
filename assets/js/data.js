@@ -183,16 +183,20 @@ window.SITE = {
   ],
 
   /* Основатели. photo — путь к фото, instagram — ник без @.
-     Чтобы добавить пятого участника, скопируйте блок { ... }. */
+     Чтобы добавить ещё участника, скопируйте блок { ... }. */
   team: [
     { name: "Maidyrov Aldiyar Asanuly", instagram: "aldeke7122", photo: "assets/img/team/aldiyar.webp", tag: "web", color: "web",
-      role: tx("Tech Lead · Fullstack-разработчик", "Tech Lead · Fullstack-әзірлеуші", "Tech Lead · Fullstack Developer") },
+      role: tx("Frontend-разработчик", "Frontend-әзірлеуші", "Frontend Developer") },
     { name: "Kuandyk Amir Raiymbekuly", instagram: "amqx.r", photo: "assets/img/team/amir.webp", tag: "ai", color: "ai",
       role: tx("ИИ-креатор", "ИИ-креатор", "AI Creator") },
     { name: "Turlygazy Beksultan Zhandosuly", instagram: "bekkss____", photo: "assets/img/team/beksultan.webp", tag: "ai", color: "ai",
       role: tx("ИИ-креатор", "ИИ-креатор", "AI Creator") },
     { name: "Zhumakhan Beibarys Dulatuly", instagram: "b_d_no_", photo: "assets/img/team/beibarys.webp", tag: "mobile", color: "mobile",
       role: tx("Мобилограф · ИИ-креатор", "Мобилограф · ИИ-креатор", "Mobilographer · AI Creator") },
+    { name: "Dzhambul Serik Olzhasuly", instagram: "serik_dzhambul", photo: "assets/img/team/dzhambul.webp", tag: "ai", color: "ai",
+      role: tx("ИИ-креатор", "ИИ-креатор", "AI Creator") },
+    { name: "Amantaev Maksat Sabitovich", instagram: "amantaevms", photo: "assets/img/team/maksat.webp", tag: "web", color: "web",
+      role: tx("Backend-разработчик", "Backend-әзірлеуші", "Backend Developer") },
   ],
 
   packages: {
