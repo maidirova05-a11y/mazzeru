@@ -138,7 +138,7 @@
     const current = el.dataset.current || "all";
     const count = (c) => S.projects.filter((p) => c === "all" || p.cat === c).length;
     const dot = { ai: "var(--blue)", web: "var(--ink)", mobile: "var(--yellow)" };
-    const opts = [["all", tr("ui.all")], ...Object.keys(S.categories).map((k) => [k, catName(k)])];
+    const opts = [["all", tr("ui.all")], ...Object.keys(S.categories).filter((k) => count(k)).map((k) => [k, catName(k)])];
     box.innerHTML = opts.map(([k, n]) => `<button type="button" class="${k === current ? "active" : ""}" data-f="${k}">${dot[k] ? `<i style="background:${dot[k]}"></i>` : ""}${esc(n)}<sup>${count(k)}</sup></button>`).join("");
     if (box.dataset.bound) return;
     box.dataset.bound = 1;
