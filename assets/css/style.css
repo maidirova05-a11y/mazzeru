@@ -215,7 +215,7 @@ svg { flex-shrink: 0; }
 .hero-text { container-type: inline-size; min-width: 0; }
 .hero h1 { font-size: clamp(38px, 12cqi, 150px); text-transform: uppercase; margin-bottom: 26px; }
 .hero h1 em, .h2 em { font-style: normal; color: var(--blue); }
-.hero h1 .line { display: block; overflow: hidden; padding-bottom: .05em; margin-bottom: -.05em; }
+.hero h1 .line { display: block; overflow: hidden; padding: .16em 0 .05em; margin: -.16em 0 -.05em; }
 .hero h1 .line > span { display: inline-block; }
 .hero-tag { margin-bottom: 22px; }
 .hero-lead { font-size: clamp(16px, 1.3vw, 19px); color: var(--muted); max-width: 520px; margin-bottom: 34px; }
