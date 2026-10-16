@@ -312,12 +312,10 @@
         const first = (words[1] || words[0]).toUpperCase();
         const initials = words.map((w) => w[0]).join("").slice(0, 2);
         const photo = m.photo ? `<img src="${esc(m.photo)}" alt="${esc(name)}" loading="lazy">` : `<div class="avatar-ph">${esc(initials)}</div>`;
-        const ig = m.instagram ? `https://instagram.com/${encodeURIComponent(m.instagram)}` : "";
-        const tag = ig ? "a" : "article";
-        const attrs = ig ? ` href="${ig}" target="_blank" rel="noopener" data-cursor="open" aria-label="${esc(name)} — Instagram @${esc(m.instagram)}"` : "";
+        const ig = !!m.instagram;
         const ring = `${first} • MAZZERU • FOUNDER • `.repeat(2);
         const chip = m.tag === "mobile" ? "mobile" : m.tag === "web" ? "web" : "ai";
-        return `<${tag} class="founder"${attrs}>
+        return `<article class="founder" role="button" tabindex="0" data-member="${k}" data-cursor="profile" aria-haspopup="dialog" aria-label="${esc(name)} — ${esc(L(m.role))}">
           <div class="f-ava">
             <svg class="f-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="fr${k}" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#fr${k}" textLength="548" lengthAdjust="spacing">${esc(ring)}</textPath></text></svg>
             <div class="f-photo">${photo}</div>
@@ -327,7 +325,7 @@
           <b>${esc(words.slice(0, 2).join(" "))}${words[2] ? `<small>${esc(words.slice(2).join(" "))}</small>` : ""}</b>
           <span class="f-role">${esc(L(m.role))}</span>
           ${ig ? `<span class="f-ig">${ICON.instagram}@${esc(m.instagram)}</span>` : ""}
-        </${tag}>`;
+        </article>`;
       }).join("");
     });
     if (fine && !reduce) $$(".founder").forEach((el) => {
@@ -422,8 +420,26 @@
       h.style.fontSize = max ? clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px" : "";
     });
   }
-  addEventListener("resize", () => { clearTimeout(fitHeadline.t); fitHeadline.t = setTimeout(fitHeadline, 120); });
-  document.fonts?.ready.then(fitHeadline);
+  /* Остальные заголовки: если самое длинное слово не влезает в блок — уменьшаем шрифт */
+  const FIT = "main h2, main h3, .contact h2, .lightbox h3";
+  function fitWords() {
+    $$(FIT).forEach((h) => {
+      h.style.fontSize = "";
+      const w = h.clientWidth;
+      if (!w || !h.offsetParent) return;
+      const fs = parseFloat(getComputedStyle(h).fontSize);
+      const probe = document.createElement("span");
+      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
+      h.appendChild(probe);
+      let max = 0;
+      h.textContent.trim().split(/\s+/).forEach((word) => { probe.textContent = word; max = Math.max(max, probe.getBoundingClientRect().width); });
+      probe.remove();
+      if (max > w) h.style.fontSize = Math.max(14, Math.floor(fs * (w / max) * 0.97)) + "px";
+    });
+  }
+  const refit = () => { fitHeadline(); fitWords(); };
+  addEventListener("resize", () => { clearTimeout(refit.t); refit.t = setTimeout(refit, 120); });
+  document.fonts?.ready.then(refit);
 
   /* ---------- Статичные тексты ---------- */
   function applyStatic() {
@@ -455,6 +471,7 @@
       renderFilters(el, () => el._orbit.build());
     });
     renderTeam(); renderPackages(); renderFaq(); renderContacts(); renderMarquee();
+    fitWords();
     heroConsole();
   }
 
@@ -517,12 +534,44 @@
   lb.className = "lightbox";
   lb.innerHTML = `<button class="icon-btn" type="button">${ICON.close}</button><div class="lb-body"></div><div class="lightbox-cap label"></div>`;
   document.body.appendChild(lb);
-  const closeLb = () => { lb.classList.remove("open"); $(".lb-body", lb).innerHTML = ""; document.body.style.overflow = ""; };
+  const closeLb = () => { lb.classList.remove("open", "lightbox--member"); $(".lb-body", lb).innerHTML = ""; document.body.style.overflow = ""; };
   lb.addEventListener("click", (e) => { if (e.target === lb || e.target.closest(".icon-btn")) closeLb(); });
   addEventListener("keydown", (e) => e.key === "Escape" && closeLb());
+  /* Профиль участника команды: сначала карточка, Instagram — отдельной кнопкой */
+  const openMember = (k) => {
+    const m = S.team[k]; if (!m) return;
+    const name = L(m.name), words = name.split(" ");
+    const chip = m.tag === "mobile" ? "mobile" : m.tag === "web" ? "web" : "ai";
+    const skills = (m.skills || []).map((x) => `<li>${esc(L(x))}</li>`).join("");
+    $(".icon-btn", lb).setAttribute("aria-label", tr("ui.close"));
+    $(".lightbox-cap", lb).textContent = "";
+    $(".lb-body", lb).innerHTML = `<div class="member" role="dialog" aria-modal="true" aria-label="${esc(name)}">
+      <div class="member-photo">${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(name)}">` : ""}</div>
+      <div class="member-info">
+        <span class="chip chip--${chip}">${esc(tagName(m.tag))}</span>
+        <h3>${esc(words.slice(0, 2).join(" "))}${words[2] ? `<small>${esc(words.slice(2).join(" "))}</small>` : ""}</h3>
+        <p class="member-role">${esc(L(m.role))}</p>
+        ${m.bio ? `<p class="member-bio">${esc(L(m.bio))}</p>` : ""}
+        ${skills ? `<ul class="member-skills">${skills}</ul>` : ""}
+        <div class="member-actions">
+          ${m.instagram ? `<a class="btn btn--sm" href="https://instagram.com/${encodeURIComponent(m.instagram)}" target="_blank" rel="noopener"><span>${ICON.instagram}@${esc(m.instagram)}</span><span class="arr">${ICON.external}</span></a>` : ""}
+          <a class="link-arrow" href="${wa(tr("ui.waHello"))}" target="_blank" rel="noopener"><span>${esc(tr("team.write"))}</span>${ICON.arrow}</a>
+        </div>
+      </div>
+    </div>`;
+    lb.classList.add("open", "lightbox--member"); document.body.style.overflow = "hidden";
+    $(".icon-btn", lb).focus();
+  };
+  document.addEventListener("click", (e) => {
+    const f = e.target.closest("[data-member]"); if (f) openMember(+f.dataset.member);
+  });
+  document.addEventListener("keydown", (e) => {
+    const f = e.target.closest?.("[data-member]");
+    if (f && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openMember(+f.dataset.member); }
+  });
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-open]"); if (!b) return;
-    const p = S.projects[+b.dataset.open]; if (!p) return;
+    const v = b.dataset.open, p = S.projects[+v] || S.projects.find((x) => x.id === v); if (!p) return;
     const title = L(p.title);
     $(".icon-btn", lb).setAttribute("aria-label", tr("ui.close"));
     $(".lb-body", lb).innerHTML = p.video
@@ -532,32 +581,11 @@
     lb.classList.add("open"); document.body.style.overflow = "hidden";
   });
 
-  /* ---------- До / после (цветокор) ---------- */
-  $$("[data-compare]").forEach((el) => {
-    const input = $("input", el);
-    const set = (v) => el.style.setProperty("--pos", v + "%");
-    input.addEventListener("input", () => set(input.value));
-    const presets = el.parentElement.querySelector("[data-presets]");
-    presets?.addEventListener("click", (e) => {
-      const b = e.target.closest("button"); if (!b) return;
-      $$("button", presets).forEach((x) => x.classList.toggle("active", x === b));
-      $(".after", el).style.filter = b.dataset.filter;
-      $(".after-tint", el).style.background = b.dataset.tint;
-    });
-    if (!reduce) {
-      const io = new IntersectionObserver(([en]) => {
-        if (!en.isIntersecting) return; io.disconnect();
-        let k = 0; const tick = () => { k += 0.02; const v = 50 + Math.sin(k * 3) * 30 * (1 - k); set(v); input.value = v; if (k < 1) requestAnimationFrame(tick); else { set(50); input.value = 50; } };
-        requestAnimationFrame(tick);
-      }, { threshold: .6 });
-      io.observe(el);
-    }
-  });
-
   /* ---------- Счётчики ---------- */
   const ioC = new IntersectionObserver((ents) => ents.forEach((en) => {
     if (!en.isIntersecting) return; ioC.unobserve(en.target);
-    const el = en.target, end = +el.dataset.count, suf = el.dataset.suffix || "";
+    const el = en.target, cat = el.dataset.countCat;
+    const end = cat ? S.projects.filter((p) => cat === "all" || p.cat === cat).length : +el.dataset.count, suf = el.dataset.suffix || "";
     if (reduce) { el.textContent = end + suf; return; }
     const t0 = performance.now(), dur = 1600;
     const step = (tm) => { const k = Math.min(1, (tm - t0) / dur); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 4))) + suf; if (k < 1) requestAnimationFrame(step); };
@@ -580,11 +608,11 @@
     const loop = () => { cx += (x - cx) * .22; cy += (y - cy) * .22; cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`; requestAnimationFrame(loop); };
     loop();
     document.addEventListener("mouseover", (e) => {
-      const tg = e.target.closest("a, button, summary, [data-compare]");
+      const tg = e.target.closest("a, button, summary, [data-member]");
       const mode = tg?.dataset.cursor;
       cur.classList.toggle("hover", !!tg && !mode);
       cur.classList.toggle("view", !!mode);
-      if (mode) cur.dataset.label = tr(mode === "open" ? "ui.open" : "ui.watch");
+      if (mode) cur.dataset.label = tr(mode === "open" ? "ui.open" : mode === "profile" ? "ui.profile" : "ui.watch");
     });
   } else cur?.remove();
 
