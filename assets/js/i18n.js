@@ -136,7 +136,6 @@ window.I18N = {
   "ai.caseT": { ru: "Твоя история. Наш AI", kz: "Сенің тарихың. Біздің AI", en: "Your story. Our AI" },
   "ai.caseP": { ru: "Промо-ролик студии: один герой проходит через несколько миров — офис с роботом, город будущего и love story на палубе лайнера. Сценарий, генерация сцен, монтаж, субтитры и звук — силами команды.", kz: "Студияның промо-ролигі: бір кейіпкер бірнеше әлемнен өтеді — роботы бар кеңсе, болашақ қаласы және лайнер палубасындағы love story. Сценарий, сахналар генерациясы, монтаж, субтитр және дыбыс — команданың өз күшімен.", en: "Our studio promo: one hero travels through several worlds — an office with a robot, a city of the future and a love story on an ocean liner deck. Script, scene generation, editing, subtitles and sound — all done in-house." },
   "ai.caseWatch": { ru: "Смотреть со звуком", kz: "Дыбыспен көру", en: "Watch with sound" },
-  "ai.caseFrames": { ru: "Кадры из ролика", kz: "Роликтен кадрлар", en: "Frames from the film" },
   "ai.c1lbl": { ru: "Услуги", kz: "Қызметтер", en: "Services" },
   "ai.c1": { ru: "Что создаём", kz: "Біз не жасаймыз", en: "What we create" },
   "ai.c1.0": { ru: "<b>Love Story</b> — история пары для свадьбы или годовщины", kz: "<b>Love Story</b> — той немесе мерейтойға арналған жұп тарихы", en: "<b>Love Story</b> — a couple’s story for a wedding or anniversary" },
