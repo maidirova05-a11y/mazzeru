@@ -157,55 +157,54 @@
       this.el = el;
       this.info = $(".orbit-info", el);
       this.countEl = $("[data-orbit-count]", el);
-      this.items = [];
+      this.items = []; this.tracks = [];
       this.t = 0; this.speed = 1; this.target = 1;
       this.active = null; this.visible = true; this.last = performance.now();
-      this.touch = matchMedia("(hover: none)").matches;
       this.resize();
-      addEventListener("resize", () => this.resize());
-      el.addEventListener("pointermove", (e) => this.move(e));
-      el.addEventListener("pointerleave", () => this.later(() => this.deactivate(), 220));
-      el.addEventListener("click", (e) => this.click(e), true);
-      el.addEventListener("focusin", (e) => { const it = this.find(e.target); if (it) this.activate(it); });
+      addEventListener("resize", () => { const w = this.W; this.resize(); if (Math.abs(this.W - w) > 1) this.build(); });  // на телефоне высота меняется при прокрутке — описание не закрываем
+      el.addEventListener("click", (e) => this.click(e));
+      addEventListener("keydown", (e) => e.key === "Escape" && this.deactivate());
       new IntersectionObserver(([en]) => { this.visible = en.isIntersecting; if (this.visible) this.loop(); }, { rootMargin: "100px" }).observe(el);
       this.build();
     }
     resize() {
       const r = this.el.getBoundingClientRect();
       this.W = r.width; this.H = r.height;
-      this.size = this.W < 640 ? 64 : this.W < 1000 ? 86 : 108;
-      this.big = this.W < 640 ? 1.8 : 2.1;
-      this.R = Math.min(this.W / 2 - this.size * .75, this.W < 640 ? this.H * .62 : this.W * .34);
+      this.size = this.W < 640 ? 70 : this.W < 1000 ? 88 : 104;
+      this.R = Math.min(this.W / 2 - this.size * .7, this.H / 2 - this.size * .7, this.W < 640 ? 170 : 300);
       this.el.style.setProperty("--bs", this.size + "px");
     }
     build() {
       this.deactivate();
       this.items.forEach((it) => it.el.remove());
+      this.tracks.forEach((t) => t.remove());
       const cat = this.el.dataset.current || this.el.dataset.orbit;
       const list = S.projects.map((p, idx) => ({ p, idx })).filter(({ p }) => cat === "all" || p.cat === cat);
       if (this.countEl) this.countEl.textContent = list.length;
-      const n = list.length <= 6 ? 1 : list.length <= 12 ? 2 : 3;
-      const RINGS = [
-        { r: n === 1 ? .8 : .72, tilt: 1.12, rot: -.2, dir: 1, sp: .00017 },
-        { r: 1, tilt: 1.2, rot: .22, dir: -1, sp: .00012 },
-        { r: .52, tilt: .98, rot: .06, dir: 1, sp: .00024 },
-      ].slice(0, n);
+      // плоские концентрические орбиты: до 10 проектов — одна
+      const RINGS = list.length <= 10 ? [{ r: 1, dir: 1 }] : [{ r: 1, dir: 1 }, { r: .66, dir: -1 }];
       const buckets = RINGS.map(() => []);
-      list.forEach((x, k) => buckets[k % n].push(x));
+      list.forEach((x, k) => buckets[k % RINGS.length].push(x));
+      this.tracks = RINGS.map((g) => {
+        const t = document.createElement("span");
+        t.className = "orbit-track";
+        t.style.width = t.style.height = g.r * this.R * 2 + "px";
+        this.el.prepend(t);
+        return t;
+      });
       this.items = [];
       buckets.forEach((b, ri) => b.forEach(({ p, idx }, j) => {
-        const title = esc(L(p.title));
-        const el = document.createElement(p.link ? "a" : "button");
+        const el = document.createElement("button");
+        el.type = "button";
         el.className = `orbit-bubble b-${p.cat}`;
         el.dataset.idx = idx;
+        el.dataset.cursor = "open";
         el.setAttribute("aria-label", L(p.title));
-        if (p.link) { el.href = p.link; el.target = "_blank"; el.rel = "noopener"; el.dataset.cursor = "open"; }
-        else { el.type = "button"; el.dataset.open = idx; el.dataset.cursor = "view"; }
-        el.innerHTML = p.image ? `<img src="${esc(p.image)}" alt="${title}" loading="lazy">` : placeholder(p);
+        el.innerHTML = p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : placeholder(p);
         const img = $("img", el);
         img?.addEventListener("error", () => (img.outerHTML = placeholder(p)), { once: true });
         this.el.appendChild(el);
-        this.items.push({ el, p, idx, ring: RINGS[ri], phase: (j / b.length) * Math.PI * 2 + ri * .8, sc: 0, x: 0, y: 0 });
+        this.items.push({ el, p, idx, ring: RINGS[ri], phase: (j / b.length) * Math.PI * 2 - Math.PI / 2, x: 0, y: 0 });
       }));
       this.frame();
       this.loop();
@@ -216,7 +215,7 @@
         this.raf = null;
         if (!this.visible) return;
         const dt = Math.min(48, now - this.last); this.last = now;
-        this.speed += (this.target - this.speed) * .08;
+        this.speed += (this.target - this.speed) * .1;
         if (!reduce) this.t += dt * this.speed;
         this.frame();
         this.raf = requestAnimationFrame(tick);
@@ -225,58 +224,31 @@
       this.raf = requestAnimationFrame(tick);
     }
     frame() {
-      const cx = this.W / 2, cy = this.H / 2 - 10, half = this.size / 2;
+      const cx = this.W / 2, cy = this.H / 2, half = this.size / 2;
       this.items.forEach((it) => {
-        const g = it.ring, R = g.r * this.R;
-        const th = it.phase + this.t * g.sp * g.dir;
-        const x = R * Math.cos(th), y0 = R * Math.sin(th);
-        const y = y0 * Math.cos(g.tilt), z = y0 * Math.sin(g.tilt);
-        const xr = x * Math.cos(g.rot) - y * Math.sin(g.rot);
-        const yr = x * Math.sin(g.rot) + y * Math.cos(g.rot);
-        const depth = R ? z / R : 0;                        // -1 (сзади) … 1 (спереди)
-        const on = it === this.active;
-        const base = .6 + .4 * (depth + 1) / 2;
-        it.sc += ((on ? this.big : base) - it.sc) * .14;
-        it.x = cx + xr; it.y = cy + yr;
-        it.el.style.transform = `translate3d(${(it.x - half).toFixed(1)}px, ${(it.y - half).toFixed(1)}px, 0) scale(${it.sc.toFixed(3)})`;
-        it.el.style.zIndex = on ? 50 : depth > 0 ? 20 + Math.round(depth * 20) : 1 + Math.round((depth + 1) * 4);
-        it.el.style.opacity = on ? 1 : (.5 + .5 * (depth + 1) / 2).toFixed(2);
+        const R = it.ring.r * this.R, th = it.phase + this.t * .00006 * it.ring.dir;
+        it.x = cx + R * Math.cos(th); it.y = cy + R * Math.sin(th);
+        it.el.style.transform = `translate3d(${(it.x - half).toFixed(1)}px, ${(it.y - half).toFixed(1)}px, 0)`;
       });
       if (this.active) this.place();
     }
-    find(target) { const b = target.closest?.(".orbit-bubble"); return b && this.items.find((it) => it.el === b); }
-    later(fn, ms) { clearTimeout(this.tm); this.tm = setTimeout(fn, ms); }
-    move(e) {
-      if (this.touch || e.pointerType === "touch") return;
-      if (this.info.contains(e.target)) { clearTimeout(this.tm); return; }
-      const r = this.el.getBoundingClientRect();
-      const px = e.clientX - r.left, py = e.clientY - r.top;
-      let best = null, bd = Infinity;
-      this.items.forEach((it) => {
-        const d = Math.hypot(px - it.x, py - it.y);
-        const reach = (this.size * it.sc) / 2 + (it === this.active ? 30 : 22);
-        if (d < reach && d < bd) { best = it; bd = d; }
-      });
-      if (best) { clearTimeout(this.tm); if (best !== this.active) this.activate(best); }
-      else if (this.active) this.later(() => this.deactivate(), 260);
-    }
     click(e) {
-      const it = this.find(e.target);
-      if (!it) { if (!this.info.contains(e.target)) this.deactivate(); return; }
-      // на телефоне первый тап — показать проект, второй — открыть
-      if (this.touch && this.active !== it) { e.preventDefault(); e.stopPropagation(); this.activate(it); }
+      const b = e.target.closest(".orbit-bubble");
+      if (b) { const it = this.items.find((x) => x.el === b); if (it) it === this.active ? this.deactivate() : this.activate(it); return; }
+      if (e.target.closest(".orbit-close") || !this.info.contains(e.target)) this.deactivate();
     }
     activate(it) {
       this.active?.el.classList.remove("on");
       this.active = it;
       it.el.classList.add("on");
       this.el.classList.add("dim");
-      this.target = 0;
+      this.target = 0;                                    // орбита останавливается, пока открыто описание
       const p = it.p;
       const action = p.link
         ? `<a class="btn btn--dark" href="${esc(p.link)}" target="_blank" rel="noopener">${tr("ui.openSite")}<span class="arr">${ICON.external}</span></a>`
-        : `<button class="btn btn--blue" type="button" data-open="${it.idx}">${tr("ui.watch")}<span class="arr">${ICON.play}</span></button>`;
+        : p.video || p.image ? `<button class="btn btn--blue" type="button" data-open="${it.idx}">${tr("ui.watch")}<span class="arr">${ICON.play}</span></button>` : "";
       this.info.innerHTML = `
+        <button class="orbit-close" type="button" aria-label="${esc(tr("ui.close"))}">${ICON.close}</button>
         <div class="chips"><span class="chip chip--${p.cat}">${esc(catName(p.cat))}</span><span class="chip">${esc(L(p.status))}</span></div>
         <h3>${esc(L(p.title))}</h3>
         <p>${esc(L(p.desc))}</p>
@@ -294,13 +266,14 @@
     }
     place() {
       if (this.W < 640) return;                           // на телефоне карточка снизу
-      const it = this.active, s = (this.size * it.sc) / 2;
+      const it = this.active, s = this.size / 2;
       const w = this.info.offsetWidth, h = this.info.offsetHeight;
-      const left = it.x < this.W / 2 ? it.x + s + 24 : it.x - s - 24 - w;
+      const left = it.x < this.W / 2 ? it.x + s + 20 : it.x - s - 20 - w;
       this.info.style.left = clamp(left, 12, this.W - w - 12) + "px";
       this.info.style.top = clamp(it.y - h / 2, 12, this.H - h - 12) + "px";
     }
   }
+
 
   /* ---------- Команда ---------- */
   const tagName = (tg) => (S.categories[tg] ? catName(tg) : tr("tag." + tg));

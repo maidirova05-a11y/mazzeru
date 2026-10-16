@@ -87,7 +87,7 @@ window.I18N = {
   "home.stat3": { ru: "языка: KZ · RU · EN", kz: "тіл: KZ · RU · EN", en: "languages: KZ · RU · EN" },
   "home.portH": { ru: "Наши проекты", kz: "Біздің жобалар", en: "Our projects" },
   "orbit.projects": { ru: "проектов", kz: "жоба", en: "projects" },
-  "orbit.hint": { ru: "Наведите курсор или нажмите на проект", kz: "Жобаға курсорды апарыңыз немесе басыңыз", en: "Hover or tap a project" },
+  "orbit.hint": { ru: "Нажмите на проект, чтобы прочитать описание", kz: "Сипаттаманы оқу үшін жобаны басыңыз", en: "Tap a project to read its description" },
   "home.c1lbl": { ru: "Цель", kz: "Мақсат", en: "Goal" },
   "home.c1": { ru: "Наша цель", kz: "Біздің мақсат", en: "Our goal" },
   "home.c1.0": { ru: "<b>Сделать премиальный контент доступным</b> — для малого бизнеса и частных клиентов", kz: "<b>Премиум контентті қолжетімді ету</b> — шағын бизнес пен жеке клиенттер үшін", en: "<b>Make premium content accessible</b> — for small businesses and private clients" },
