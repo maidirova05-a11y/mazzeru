@@ -60,7 +60,9 @@ body.menu-open { overflow: hidden; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-h1, h2, h3 { font-family: var(--f-display); font-weight: 900; line-height: .95; letter-spacing: -0.035em; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 900; line-height: .98; letter-spacing: -0.035em; }
+/* у казахских Қ, Ң, Ұ, Й, І выносные элементы — чуть больше воздуха между строками */
+:root[lang="kk"] h1, :root[lang="kk"] h2, :root[lang="kk"] h3 { line-height: 1.08; }
 svg { flex-shrink: 0; }
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 10px; }
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
@@ -215,7 +217,7 @@ svg { flex-shrink: 0; }
 .hero-text { container-type: inline-size; min-width: 0; }
 .hero h1 { font-size: clamp(38px, 12cqi, 150px); text-transform: uppercase; margin-bottom: 26px; }
 .hero h1 em, .h2 em { font-style: normal; color: var(--blue); }
-.hero h1 .line { display: block; overflow: hidden; padding: .16em 0 .05em; margin: -.16em 0 -.05em; }
+.hero h1 .line { display: block; overflow: hidden; padding: .16em 0 .14em; margin: -.16em 0 -.14em; }
 .hero h1 .line > span { display: inline-block; }
 .hero-tag { margin-bottom: 22px; }
 .hero-lead { font-size: clamp(16px, 1.3vw, 19px); color: var(--muted); max-width: 520px; margin-bottom: 34px; }
@@ -339,7 +341,7 @@ svg { flex-shrink: 0; }
 .dir--web .dir-go svg { color: #0b0b0f; }
 .dir--mobile .dir-go svg { color: var(--yellow); }
 .dir:hover .dir-go { transform: rotate(-45deg) scale(1.08); }
-.dir h3 { font-size: clamp(34px, 3.2vw, 48px); text-transform: uppercase; margin-bottom: 14px; }
+.dir h3 { font-size: clamp(30px, 2.9vw, 44px); text-transform: uppercase; margin-bottom: 14px; }
 .dir p { opacity: .8; font-size: 15.5px; max-width: 320px; }
 .dir-orb { position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; border-radius: 50%; right: -24%; top: 16%; transition: transform .8s var(--ease); }
 .dir--ai .dir-orb { background: var(--yellow); }
@@ -563,6 +565,7 @@ button.media { text-align: left; }
 .pkg .btn { justify-content: space-between; }
 
 /* FAQ */
+.faq-grid .h2 { font-size: clamp(36px, 4.4vw, 68px); }
 .faq-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
 .faq details { border-bottom: 1.5px solid var(--line-2); }
 .faq details:first-child { border-top: 1.5px solid var(--line-2); }
@@ -671,6 +674,8 @@ button.media { text-align: left; }
   .hero-visual { justify-self: center; max-width: 520px; margin-top: 24px; }
   .dirs { grid-template-columns: 1fr; }
   .dir { min-height: 320px; }
+  .dir-orb { width: 44%; right: -14%; top: -12%; }
+  .dir-icon { display: none; }
   .duo, .faq-grid { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(3) { padding-left: 0; border-left: 0; }

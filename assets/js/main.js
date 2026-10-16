@@ -420,8 +420,26 @@
       h.style.fontSize = max ? clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px" : "";
     });
   }
-  addEventListener("resize", () => { clearTimeout(fitHeadline.t); fitHeadline.t = setTimeout(fitHeadline, 120); });
-  document.fonts?.ready.then(fitHeadline);
+  /* Остальные заголовки: если самое длинное слово не влезает в блок — уменьшаем шрифт */
+  const FIT = "main h2, main h3, .contact h2, .lightbox h3";
+  function fitWords() {
+    $$(FIT).forEach((h) => {
+      h.style.fontSize = "";
+      const w = h.clientWidth;
+      if (!w || !h.offsetParent) return;
+      const fs = parseFloat(getComputedStyle(h).fontSize);
+      const probe = document.createElement("span");
+      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
+      h.appendChild(probe);
+      let max = 0;
+      h.textContent.trim().split(/\s+/).forEach((word) => { probe.textContent = word; max = Math.max(max, probe.getBoundingClientRect().width); });
+      probe.remove();
+      if (max > w) h.style.fontSize = Math.max(14, Math.floor(fs * (w / max) * 0.97)) + "px";
+    });
+  }
+  const refit = () => { fitHeadline(); fitWords(); };
+  addEventListener("resize", () => { clearTimeout(refit.t); refit.t = setTimeout(refit, 120); });
+  document.fonts?.ready.then(refit);
 
   /* ---------- Статичные тексты ---------- */
   function applyStatic() {
@@ -453,6 +471,7 @@
       renderFilters(el, () => el._orbit.build());
     });
     renderTeam(); renderPackages(); renderFaq(); renderContacts(); renderMarquee();
+    fitWords();
     heroConsole();
   }
 
