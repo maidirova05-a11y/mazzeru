@@ -284,7 +284,7 @@
         const words = name.split(" ");
         const first = (words[1] || words[0]).toUpperCase();
         const initials = words.map((w) => w[0]).join("").slice(0, 2);
-        const photo = m.photo ? `<img src="${esc(m.photo)}" alt="${esc(name)}" loading="lazy">` : `<div class="avatar-ph">${esc(initials)}</div>`;
+        const photo = m.photo ? `<img src="${esc(m.photo.replace("/team/", "/team/sm/"))}" alt="${esc(name)}" width="320" height="400" loading="lazy" decoding="async">` : `<div class="avatar-ph">${esc(initials)}</div>`;
         const ig = !!m.instagram;
         const ring = `${first} • MAZZERU • FOUNDER • `.repeat(2);
         const chip = m.tag === "mobile" ? "mobile" : m.tag === "web" ? "web" : "ai";
@@ -302,12 +302,14 @@
       }).join("");
     });
     if (fine && !reduce) $$(".founder").forEach((el) => {
+      let r = null, raf = 0, px = 0, py = 0;
+      el.addEventListener("mouseenter", () => (r = el.getBoundingClientRect()));
       el.addEventListener("mousemove", (e) => {
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-        el.style.transform = `perspective(900px) rotateX(${-py * 8}deg) rotateY(${px * 10}deg) translateY(-6px)`;
+        if (!r) r = el.getBoundingClientRect();
+        px = (e.clientX - r.left) / r.width - .5; py = (e.clientY - r.top) / r.height - .5;
+        if (!raf) raf = requestAnimationFrame(() => { raf = 0; el.style.transform = `perspective(900px) rotateX(${-py * 6}deg) rotateY(${px * 8}deg) translateY(-6px)`; });
       });
-      el.addEventListener("mouseleave", () => (el.style.transform = ""));
+      el.addEventListener("mouseleave", () => { cancelAnimationFrame(raf); raf = 0; r = null; el.style.transform = ""; });
     });
   }
 
@@ -374,44 +376,49 @@
     h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map((part) => `<span class="line"><span>${part.trim()}</span></span>`).join("");
   }
 
+  /* Ширина слова считается через canvas — без принудительного пересчёта раскладки страницы */
+  const cv = document.createElement("canvas").getContext("2d");
+  const fontOf = (el) => {
+    const cs = getComputedStyle(el);
+    return { weight: cs.fontWeight, family: cs.fontFamily, fs: parseFloat(cs.fontSize), ls: parseFloat(cs.letterSpacing) || 0, upper: cs.textTransform === "uppercase" };
+  };
+  const wordWidth = (word, f, fs = f.fs) => {
+    cv.font = `${f.weight} ${fs}px ${f.family}`;
+    const t = f.upper ? word.toUpperCase() : word;
+    return cv.measureText(t).width + (f.ls / f.fs) * fs * t.length;
+  };
+  const longest = (text, f, fs) => text.trim().split(/\s+/).reduce((m, w) => Math.max(m, wordWidth(w, f, fs)), 0);
+
   /* Заголовок hero: максимальный размер, при котором самое длинное слово помещается */
   function fitHeadline() {
-    $$(".hero h1").forEach((h) => {
-      const box = h.parentElement.getBoundingClientRect().width;
+    const hs = $$(".hero h1");
+    hs.forEach((h) => (h.style.fontSize = ""));
+    const jobs = hs.map((h) => ({ h, box: h.parentElement.clientWidth, f: fontOf(h), lines: $$(".line > span", h).map((x) => x.textContent) }));
+    jobs.forEach(({ h, box, f, lines }) => {
       if (!box) return;
-      h.style.fontSize = "100px";
-      const probe = document.createElement("span");
-      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
-      h.appendChild(probe);
-      let max = 0;
-      $$(".line > span", h).forEach((s) => {
-        const txt = s.textContent;
-        const parts = txt.includes(" ") ? [txt] : txt.split(/\s+/);
-        parts.forEach((w) => { probe.textContent = w; max = Math.max(max, probe.getBoundingClientRect().width / 100); });
-      });
-      probe.remove();
-      h.style.fontSize = max ? clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px" : "";
+      const max = lines.reduce((m, t) => Math.max(m, t.includes(" ") ? wordWidth(t, f, 100) : longest(t, f, 100)), 0) / 100;
+      if (max) h.style.fontSize = clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px";
     });
   }
   /* Остальные заголовки: если самое длинное слово не влезает в блок — уменьшаем шрифт */
   const FIT = "main h2, main h3, .contact h2, .lightbox h3";
   function fitWords() {
-    $$(FIT).forEach((h) => {
-      h.style.fontSize = "";
-      const w = h.clientWidth;
-      if (!w || !h.offsetParent) return;
-      const fs = parseFloat(getComputedStyle(h).fontSize);
-      const probe = document.createElement("span");
-      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
-      h.appendChild(probe);
-      let max = 0;
-      h.textContent.trim().split(/\s+/).forEach((word) => { probe.textContent = word; max = Math.max(max, probe.getBoundingClientRect().width); });
-      probe.remove();
-      if (max > w) h.style.fontSize = Math.max(14, Math.floor(fs * (w / max) * 0.97)) + "px";
+    const hs = $$(FIT);
+    hs.forEach((h) => (h.style.fontSize = ""));
+    const jobs = hs.map((h) => ({ h, w: h.clientWidth, f: fontOf(h), text: h.textContent }));   // одно чтение раскладки
+    jobs.forEach(({ h, w, f, text }) => {
+      if (!w) return;
+      const max = longest(text, f);
+      if (max > w) h.style.fontSize = Math.max(14, Math.floor(f.fs * (w / max) * 0.97)) + "px";
     });
   }
   const refit = () => { fitHeadline(); fitWords(); };
-  addEventListener("resize", () => { clearTimeout(refit.t); refit.t = setTimeout(refit, 120); });
+  let lastW = innerWidth;
+  addEventListener("resize", () => {
+    if (innerWidth === lastW) return;                    // на телефоне при прокрутке меняется только высота
+    lastW = innerWidth;
+    clearTimeout(refit.t); refit.t = setTimeout(refit, 150);
+  });
   document.fonts?.ready.then(refit);
 
   /* ---------- Статичные тексты ---------- */
@@ -448,6 +455,14 @@
     heroConsole();
   }
 
+  /* ---------- Пауза анимаций, которые ушли с экрана ---------- */
+  let heroOff = false;
+  const offIO = new IntersectionObserver((ents) => ents.forEach((en) => {
+    en.target.classList.toggle("is-off", !en.isIntersecting);
+    if (en.target.matches(".hero-visual")) heroOff = !en.isIntersecting;
+  }), { rootMargin: "80px" });
+  $$(".hero-visual, .bands, .team, .pipeline, .contact").forEach((el) => offIO.observe(el));
+
   /* ---------- «Студийная консоль» в hero ---------- */
   let consoleRun = 0;
   function heroConsole() {
@@ -456,17 +471,18 @@
     const run = ++consoleRun;
     const bar = $("[data-bar]"), pct = $("[data-pct]"), frames = $$(".vp-frames i");
     const text = tr(typeEl.dataset.type);
-    if (reduce) { typeEl.textContent = text; if (bar) bar.style.width = "100%"; if (pct) pct.textContent = "100%"; frames.forEach((f) => f.classList.add("on")); return; }
+    if (reduce) { typeEl.textContent = text; if (bar) bar.style.transform = "none"; if (pct) pct.textContent = "100%"; frames.forEach((f) => f.classList.add("on")); return; }
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     (async () => {
       while (run === consoleRun) {
         typeEl.textContent = ""; frames.forEach((f) => f.classList.remove("on"));
-        if (bar) bar.style.width = "0%"; if (pct) pct.textContent = "0%";
+        if (bar) bar.style.transform = "scaleX(0)"; if (pct) pct.textContent = "0%";
+        while (heroOff && run === consoleRun) await wait(400);
         for (const ch of text) { if (run !== consoleRun) return; typeEl.textContent += ch; await wait(28 + Math.random() * 40); }
         await wait(300);
         for (let v = 0; v <= 100; v += 2) {
           if (run !== consoleRun) return;
-          if (bar) bar.style.width = v + "%"; if (pct) pct.textContent = v + "%";
+          if (bar) bar.style.transform = `scaleX(${v / 100})`; if (pct) pct.textContent = v + "%";
           frames.forEach((f, k) => f.classList.toggle("on", v >= (k + 1) * 25));
           await wait(36);
         }
@@ -480,6 +496,7 @@
     let sec = 0, lk = 1200;
     const fmt = new Intl.DateTimeFormat("ru-RU", { timeZone: "Asia/Almaty", hour: "2-digit", minute: "2-digit" });
     const tick = () => {
+      if (heroOff) return;
       if (tc) { sec = (sec + 1) % 60; tc.textContent = `00:${String(sec).padStart(2, "0")}`; }
       if (likes && Math.random() > .5) { lk += Math.round(Math.random() * 9); likes.textContent = (lk / 1000).toFixed(1) + "K"; }
       if (clock) { try { clock.textContent = fmt.format(new Date()); } catch { clock.textContent = ""; } }
