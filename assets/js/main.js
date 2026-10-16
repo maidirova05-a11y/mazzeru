@@ -157,55 +157,54 @@
       this.el = el;
       this.info = $(".orbit-info", el);
       this.countEl = $("[data-orbit-count]", el);
-      this.items = [];
+      this.items = []; this.tracks = [];
       this.t = 0; this.speed = 1; this.target = 1;
       this.active = null; this.visible = true; this.last = performance.now();
-      this.touch = matchMedia("(hover: none)").matches;
       this.resize();
-      addEventListener("resize", () => this.resize());
-      el.addEventListener("pointermove", (e) => this.move(e));
-      el.addEventListener("pointerleave", () => this.later(() => this.deactivate(), 220));
-      el.addEventListener("click", (e) => this.click(e), true);
-      el.addEventListener("focusin", (e) => { const it = this.find(e.target); if (it) this.activate(it); });
+      addEventListener("resize", () => { const w = this.W; this.resize(); if (Math.abs(this.W - w) > 1) this.build(); });  // на телефоне высота меняется при прокрутке — описание не закрываем
+      el.addEventListener("click", (e) => this.click(e));
+      addEventListener("keydown", (e) => e.key === "Escape" && this.deactivate());
       new IntersectionObserver(([en]) => { this.visible = en.isIntersecting; if (this.visible) this.loop(); }, { rootMargin: "100px" }).observe(el);
       this.build();
     }
     resize() {
       const r = this.el.getBoundingClientRect();
       this.W = r.width; this.H = r.height;
-      this.size = this.W < 640 ? 64 : this.W < 1000 ? 86 : 108;
-      this.big = this.W < 640 ? 1.8 : 2.1;
-      this.R = Math.min(this.W / 2 - this.size * .75, this.W < 640 ? this.H * .62 : this.W * .34);
+      this.size = this.W < 640 ? 70 : this.W < 1000 ? 88 : 104;
+      this.R = Math.min(this.W / 2 - this.size * .7, this.H / 2 - this.size * .7, this.W < 640 ? 170 : 300);
       this.el.style.setProperty("--bs", this.size + "px");
     }
     build() {
       this.deactivate();
       this.items.forEach((it) => it.el.remove());
+      this.tracks.forEach((t) => t.remove());
       const cat = this.el.dataset.current || this.el.dataset.orbit;
       const list = S.projects.map((p, idx) => ({ p, idx })).filter(({ p }) => cat === "all" || p.cat === cat);
       if (this.countEl) this.countEl.textContent = list.length;
-      const n = list.length <= 6 ? 1 : list.length <= 12 ? 2 : 3;
-      const RINGS = [
-        { r: n === 1 ? .8 : .72, tilt: 1.12, rot: -.2, dir: 1, sp: .00017 },
-        { r: 1, tilt: 1.2, rot: .22, dir: -1, sp: .00012 },
-        { r: .52, tilt: .98, rot: .06, dir: 1, sp: .00024 },
-      ].slice(0, n);
+      // плоские концентрические орбиты: до 10 проектов — одна
+      const RINGS = list.length <= 10 ? [{ r: 1, dir: 1 }] : [{ r: 1, dir: 1 }, { r: .66, dir: -1 }];
       const buckets = RINGS.map(() => []);
-      list.forEach((x, k) => buckets[k % n].push(x));
+      list.forEach((x, k) => buckets[k % RINGS.length].push(x));
+      this.tracks = RINGS.map((g) => {
+        const t = document.createElement("span");
+        t.className = "orbit-track";
+        t.style.width = t.style.height = g.r * this.R * 2 + "px";
+        this.el.prepend(t);
+        return t;
+      });
       this.items = [];
       buckets.forEach((b, ri) => b.forEach(({ p, idx }, j) => {
-        const title = esc(L(p.title));
-        const el = document.createElement(p.link ? "a" : "button");
+        const el = document.createElement("button");
+        el.type = "button";
         el.className = `orbit-bubble b-${p.cat}`;
         el.dataset.idx = idx;
+        el.dataset.cursor = "open";
         el.setAttribute("aria-label", L(p.title));
-        if (p.link) { el.href = p.link; el.target = "_blank"; el.rel = "noopener"; el.dataset.cursor = "open"; }
-        else { el.type = "button"; el.dataset.open = idx; el.dataset.cursor = "view"; }
-        el.innerHTML = p.image ? `<img src="${esc(p.image)}" alt="${title}" loading="lazy">` : placeholder(p);
+        el.innerHTML = p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : placeholder(p);
         const img = $("img", el);
         img?.addEventListener("error", () => (img.outerHTML = placeholder(p)), { once: true });
         this.el.appendChild(el);
-        this.items.push({ el, p, idx, ring: RINGS[ri], phase: (j / b.length) * Math.PI * 2 + ri * .8, sc: 0, x: 0, y: 0 });
+        this.items.push({ el, p, idx, ring: RINGS[ri], phase: (j / b.length) * Math.PI * 2 - Math.PI / 2, x: 0, y: 0 });
       }));
       this.frame();
       this.loop();
@@ -216,7 +215,7 @@
         this.raf = null;
         if (!this.visible) return;
         const dt = Math.min(48, now - this.last); this.last = now;
-        this.speed += (this.target - this.speed) * .08;
+        this.speed += (this.target - this.speed) * .1;
         if (!reduce) this.t += dt * this.speed;
         this.frame();
         this.raf = requestAnimationFrame(tick);
@@ -225,58 +224,31 @@
       this.raf = requestAnimationFrame(tick);
     }
     frame() {
-      const cx = this.W / 2, cy = this.H / 2 - 10, half = this.size / 2;
+      const cx = this.W / 2, cy = this.H / 2, half = this.size / 2;
       this.items.forEach((it) => {
-        const g = it.ring, R = g.r * this.R;
-        const th = it.phase + this.t * g.sp * g.dir;
-        const x = R * Math.cos(th), y0 = R * Math.sin(th);
-        const y = y0 * Math.cos(g.tilt), z = y0 * Math.sin(g.tilt);
-        const xr = x * Math.cos(g.rot) - y * Math.sin(g.rot);
-        const yr = x * Math.sin(g.rot) + y * Math.cos(g.rot);
-        const depth = R ? z / R : 0;                        // -1 (сзади) … 1 (спереди)
-        const on = it === this.active;
-        const base = .6 + .4 * (depth + 1) / 2;
-        it.sc += ((on ? this.big : base) - it.sc) * .14;
-        it.x = cx + xr; it.y = cy + yr;
-        it.el.style.transform = `translate3d(${(it.x - half).toFixed(1)}px, ${(it.y - half).toFixed(1)}px, 0) scale(${it.sc.toFixed(3)})`;
-        it.el.style.zIndex = on ? 50 : depth > 0 ? 20 + Math.round(depth * 20) : 1 + Math.round((depth + 1) * 4);
-        it.el.style.opacity = on ? 1 : (.5 + .5 * (depth + 1) / 2).toFixed(2);
+        const R = it.ring.r * this.R, th = it.phase + this.t * .00006 * it.ring.dir;
+        it.x = cx + R * Math.cos(th); it.y = cy + R * Math.sin(th);
+        it.el.style.transform = `translate3d(${(it.x - half).toFixed(1)}px, ${(it.y - half).toFixed(1)}px, 0)`;
       });
       if (this.active) this.place();
     }
-    find(target) { const b = target.closest?.(".orbit-bubble"); return b && this.items.find((it) => it.el === b); }
-    later(fn, ms) { clearTimeout(this.tm); this.tm = setTimeout(fn, ms); }
-    move(e) {
-      if (this.touch || e.pointerType === "touch") return;
-      if (this.info.contains(e.target)) { clearTimeout(this.tm); return; }
-      const r = this.el.getBoundingClientRect();
-      const px = e.clientX - r.left, py = e.clientY - r.top;
-      let best = null, bd = Infinity;
-      this.items.forEach((it) => {
-        const d = Math.hypot(px - it.x, py - it.y);
-        const reach = (this.size * it.sc) / 2 + (it === this.active ? 30 : 22);
-        if (d < reach && d < bd) { best = it; bd = d; }
-      });
-      if (best) { clearTimeout(this.tm); if (best !== this.active) this.activate(best); }
-      else if (this.active) this.later(() => this.deactivate(), 260);
-    }
     click(e) {
-      const it = this.find(e.target);
-      if (!it) { if (!this.info.contains(e.target)) this.deactivate(); return; }
-      // на телефоне первый тап — показать проект, второй — открыть
-      if (this.touch && this.active !== it) { e.preventDefault(); e.stopPropagation(); this.activate(it); }
+      const b = e.target.closest(".orbit-bubble");
+      if (b) { const it = this.items.find((x) => x.el === b); if (it) it === this.active ? this.deactivate() : this.activate(it); return; }
+      if (e.target.closest(".orbit-close") || !this.info.contains(e.target)) this.deactivate();
     }
     activate(it) {
       this.active?.el.classList.remove("on");
       this.active = it;
       it.el.classList.add("on");
       this.el.classList.add("dim");
-      this.target = 0;
+      this.target = 0;                                    // орбита останавливается, пока открыто описание
       const p = it.p;
       const action = p.link
         ? `<a class="btn btn--dark" href="${esc(p.link)}" target="_blank" rel="noopener">${tr("ui.openSite")}<span class="arr">${ICON.external}</span></a>`
-        : `<button class="btn btn--blue" type="button" data-open="${it.idx}">${tr("ui.watch")}<span class="arr">${ICON.play}</span></button>`;
+        : p.video || p.image ? `<button class="btn btn--blue" type="button" data-open="${it.idx}">${tr("ui.watch")}<span class="arr">${ICON.play}</span></button>` : "";
       this.info.innerHTML = `
+        <button class="orbit-close" type="button" aria-label="${esc(tr("ui.close"))}">${ICON.close}</button>
         <div class="chips"><span class="chip chip--${p.cat}">${esc(catName(p.cat))}</span><span class="chip">${esc(L(p.status))}</span></div>
         <h3>${esc(L(p.title))}</h3>
         <p>${esc(L(p.desc))}</p>
@@ -294,13 +266,14 @@
     }
     place() {
       if (this.W < 640) return;                           // на телефоне карточка снизу
-      const it = this.active, s = (this.size * it.sc) / 2;
+      const it = this.active, s = this.size / 2;
       const w = this.info.offsetWidth, h = this.info.offsetHeight;
-      const left = it.x < this.W / 2 ? it.x + s + 24 : it.x - s - 24 - w;
+      const left = it.x < this.W / 2 ? it.x + s + 20 : it.x - s - 20 - w;
       this.info.style.left = clamp(left, 12, this.W - w - 12) + "px";
       this.info.style.top = clamp(it.y - h / 2, 12, this.H - h - 12) + "px";
     }
   }
+
 
   /* ---------- Команда ---------- */
   const tagName = (tg) => (S.categories[tg] ? catName(tg) : tr("tag." + tg));
@@ -311,7 +284,7 @@
         const words = name.split(" ");
         const first = (words[1] || words[0]).toUpperCase();
         const initials = words.map((w) => w[0]).join("").slice(0, 2);
-        const photo = m.photo ? `<img src="${esc(m.photo)}" alt="${esc(name)}" loading="lazy">` : `<div class="avatar-ph">${esc(initials)}</div>`;
+        const photo = m.photo ? `<img src="${esc(m.photo.replace("/team/", "/team/sm/"))}" alt="${esc(name)}" width="320" height="400" loading="lazy" decoding="async">` : `<div class="avatar-ph">${esc(initials)}</div>`;
         const ig = !!m.instagram;
         const ring = `${first} • MAZZERU • FOUNDER • `.repeat(2);
         const chip = m.tag === "mobile" ? "mobile" : m.tag === "web" ? "web" : "ai";
@@ -329,12 +302,14 @@
       }).join("");
     });
     if (fine && !reduce) $$(".founder").forEach((el) => {
+      let r = null, raf = 0, px = 0, py = 0;
+      el.addEventListener("mouseenter", () => (r = el.getBoundingClientRect()));
       el.addEventListener("mousemove", (e) => {
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
-        el.style.transform = `perspective(900px) rotateX(${-py * 8}deg) rotateY(${px * 10}deg) translateY(-6px)`;
+        if (!r) r = el.getBoundingClientRect();
+        px = (e.clientX - r.left) / r.width - .5; py = (e.clientY - r.top) / r.height - .5;
+        if (!raf) raf = requestAnimationFrame(() => { raf = 0; el.style.transform = `perspective(900px) rotateX(${-py * 6}deg) rotateY(${px * 8}deg) translateY(-6px)`; });
       });
-      el.addEventListener("mouseleave", () => (el.style.transform = ""));
+      el.addEventListener("mouseleave", () => { cancelAnimationFrame(raf); raf = 0; r = null; el.style.transform = ""; });
     });
   }
 
@@ -401,44 +376,49 @@
     h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map((part) => `<span class="line"><span>${part.trim()}</span></span>`).join("");
   }
 
+  /* Ширина слова считается через canvas — без принудительного пересчёта раскладки страницы */
+  const cv = document.createElement("canvas").getContext("2d");
+  const fontOf = (el) => {
+    const cs = getComputedStyle(el);
+    return { weight: cs.fontWeight, family: cs.fontFamily, fs: parseFloat(cs.fontSize), ls: parseFloat(cs.letterSpacing) || 0, upper: cs.textTransform === "uppercase" };
+  };
+  const wordWidth = (word, f, fs = f.fs) => {
+    cv.font = `${f.weight} ${fs}px ${f.family}`;
+    const t = f.upper ? word.toUpperCase() : word;
+    return cv.measureText(t).width + (f.ls / f.fs) * fs * t.length;
+  };
+  const longest = (text, f, fs) => text.trim().split(/\s+/).reduce((m, w) => Math.max(m, wordWidth(w, f, fs)), 0);
+
   /* Заголовок hero: максимальный размер, при котором самое длинное слово помещается */
   function fitHeadline() {
-    $$(".hero h1").forEach((h) => {
-      const box = h.parentElement.getBoundingClientRect().width;
+    const hs = $$(".hero h1");
+    hs.forEach((h) => (h.style.fontSize = ""));
+    const jobs = hs.map((h) => ({ h, box: h.parentElement.clientWidth, f: fontOf(h), lines: $$(".line > span", h).map((x) => x.textContent) }));
+    jobs.forEach(({ h, box, f, lines }) => {
       if (!box) return;
-      h.style.fontSize = "100px";
-      const probe = document.createElement("span");
-      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
-      h.appendChild(probe);
-      let max = 0;
-      $$(".line > span", h).forEach((s) => {
-        const txt = s.textContent;
-        const parts = txt.includes(" ") ? [txt] : txt.split(/\s+/);
-        parts.forEach((w) => { probe.textContent = w; max = Math.max(max, probe.getBoundingClientRect().width / 100); });
-      });
-      probe.remove();
-      h.style.fontSize = max ? clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px" : "";
+      const max = lines.reduce((m, t) => Math.max(m, t.includes(" ") ? wordWidth(t, f, 100) : longest(t, f, 100)), 0) / 100;
+      if (max) h.style.fontSize = clamp((box / max) * 0.96, 38, 150).toFixed(1) + "px";
     });
   }
   /* Остальные заголовки: если самое длинное слово не влезает в блок — уменьшаем шрифт */
   const FIT = "main h2, main h3, .contact h2, .lightbox h3";
   function fitWords() {
-    $$(FIT).forEach((h) => {
-      h.style.fontSize = "";
-      const w = h.clientWidth;
-      if (!w || !h.offsetParent) return;
-      const fs = parseFloat(getComputedStyle(h).fontSize);
-      const probe = document.createElement("span");
-      probe.style.cssText = "position:absolute;white-space:nowrap;visibility:hidden;left:0;top:0";
-      h.appendChild(probe);
-      let max = 0;
-      h.textContent.trim().split(/\s+/).forEach((word) => { probe.textContent = word; max = Math.max(max, probe.getBoundingClientRect().width); });
-      probe.remove();
-      if (max > w) h.style.fontSize = Math.max(14, Math.floor(fs * (w / max) * 0.97)) + "px";
+    const hs = $$(FIT);
+    hs.forEach((h) => (h.style.fontSize = ""));
+    const jobs = hs.map((h) => ({ h, w: h.clientWidth, f: fontOf(h), text: h.textContent }));   // одно чтение раскладки
+    jobs.forEach(({ h, w, f, text }) => {
+      if (!w) return;
+      const max = longest(text, f);
+      if (max > w) h.style.fontSize = Math.max(14, Math.floor(f.fs * (w / max) * 0.97)) + "px";
     });
   }
   const refit = () => { fitHeadline(); fitWords(); };
-  addEventListener("resize", () => { clearTimeout(refit.t); refit.t = setTimeout(refit, 120); });
+  let lastW = innerWidth;
+  addEventListener("resize", () => {
+    if (innerWidth === lastW) return;                    // на телефоне при прокрутке меняется только высота
+    lastW = innerWidth;
+    clearTimeout(refit.t); refit.t = setTimeout(refit, 150);
+  });
   document.fonts?.ready.then(refit);
 
   /* ---------- Статичные тексты ---------- */
@@ -475,6 +455,14 @@
     heroConsole();
   }
 
+  /* ---------- Пауза анимаций, которые ушли с экрана ---------- */
+  let heroOff = false;
+  const offIO = new IntersectionObserver((ents) => ents.forEach((en) => {
+    en.target.classList.toggle("is-off", !en.isIntersecting);
+    if (en.target.matches(".hero-visual")) heroOff = !en.isIntersecting;
+  }), { rootMargin: "80px" });
+  $$(".hero-visual, .bands, .team, .pipeline, .contact").forEach((el) => offIO.observe(el));
+
   /* ---------- «Студийная консоль» в hero ---------- */
   let consoleRun = 0;
   function heroConsole() {
@@ -483,17 +471,18 @@
     const run = ++consoleRun;
     const bar = $("[data-bar]"), pct = $("[data-pct]"), frames = $$(".vp-frames i");
     const text = tr(typeEl.dataset.type);
-    if (reduce) { typeEl.textContent = text; if (bar) bar.style.width = "100%"; if (pct) pct.textContent = "100%"; frames.forEach((f) => f.classList.add("on")); return; }
+    if (reduce) { typeEl.textContent = text; if (bar) bar.style.transform = "none"; if (pct) pct.textContent = "100%"; frames.forEach((f) => f.classList.add("on")); return; }
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     (async () => {
       while (run === consoleRun) {
         typeEl.textContent = ""; frames.forEach((f) => f.classList.remove("on"));
-        if (bar) bar.style.width = "0%"; if (pct) pct.textContent = "0%";
+        if (bar) bar.style.transform = "scaleX(0)"; if (pct) pct.textContent = "0%";
+        while (heroOff && run === consoleRun) await wait(400);
         for (const ch of text) { if (run !== consoleRun) return; typeEl.textContent += ch; await wait(28 + Math.random() * 40); }
         await wait(300);
         for (let v = 0; v <= 100; v += 2) {
           if (run !== consoleRun) return;
-          if (bar) bar.style.width = v + "%"; if (pct) pct.textContent = v + "%";
+          if (bar) bar.style.transform = `scaleX(${v / 100})`; if (pct) pct.textContent = v + "%";
           frames.forEach((f, k) => f.classList.toggle("on", v >= (k + 1) * 25));
           await wait(36);
         }
@@ -507,6 +496,7 @@
     let sec = 0, lk = 1200;
     const fmt = new Intl.DateTimeFormat("ru-RU", { timeZone: "Asia/Almaty", hour: "2-digit", minute: "2-digit" });
     const tick = () => {
+      if (heroOff) return;
       if (tc) { sec = (sec + 1) % 60; tc.textContent = `00:${String(sec).padStart(2, "0")}`; }
       if (likes && Math.random() > .5) { lk += Math.round(Math.random() * 9); likes.textContent = (lk / 1000).toFixed(1) + "K"; }
       if (clock) { try { clock.textContent = fmt.format(new Date()); } catch { clock.textContent = ""; } }
