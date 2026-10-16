@@ -552,7 +552,7 @@
   });
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-open]"); if (!b) return;
-    const p = S.projects[+b.dataset.open]; if (!p) return;
+    const v = b.dataset.open, p = S.projects[+v] || S.projects.find((x) => x.id === v); if (!p) return;
     const title = L(p.title);
     $(".icon-btn", lb).setAttribute("aria-label", tr("ui.close"));
     $(".lb-body", lb).innerHTML = p.video

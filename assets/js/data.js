@@ -103,6 +103,14 @@ window.SITE = {
                "Оралдағы өнеркәсіптік жабдық пен MRO-материалдар жеткізушісінің сайты: каталог, өндіруші-серіктестер, жобалар және өтінім формасы. Үш тіл.",
                "Website for an Uralsk-based industrial equipment and MRO supplier: catalog, manufacturer partners, projects and a request form. Three languages."),
       meta: [m(L.client, tx("Уралмашсервис", "Уралмашсервис", "Uralmashservice")), m(L.field, tx("Промышленность", "Өнеркәсіп", "Industry"))] },
+
+    /* ---------- ИИ контент ---------- */
+    { id: "ai-story", cat: "ai", status: tx("Промо студии", "Студия промосы", "Studio promo"), image: "assets/img/ai/story-5.webp", video: "assets/video/ai-story.mp4",
+      title: tx("Твоя история. Наш AI", "Сенің тарихың. Біздің AI", "Your story. Our AI"),
+      desc: tx("Вертикальный ИИ-ролик: герой в кадре, офис с роботом, город будущего и love story на палубе лайнера — без единого съёмочного дня.",
+               "Вертикаль ИИ-ролик: кадрдағы кейіпкер, роботы бар кеңсе, болашақ қаласы және лайнер палубасындағы love story — бірде-бір түсірілім күнінсіз.",
+               "A vertical AI film: the hero on screen, an office with a robot, a city of the future and a love story on an ocean liner deck — without a single day of shooting."),
+      meta: [m(L.duration, tx("44 сек", "44 сек", "44 sec")), m(tx("Формат", "Формат", "Format"), "9:16 · Reels")] },
   ],
 
   /* Основатели. photo — путь к фото, instagram — ник без @.
