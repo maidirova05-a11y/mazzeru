@@ -626,32 +626,6 @@ button.media { text-align: left; }
   .member-photo { aspect-ratio: 1; max-width: 220px; }
 }
 
-/* Избранные проекты на главной */
-.feats { display: grid; gap: clamp(28px, 5vw, 72px); }
-.feat { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
-.feat--rev .feat-stage { order: 2; }
-.feat-stage { position: relative; display: block; padding: clamp(22px, 4vw, 48px) clamp(48px, 9vw, 120px) clamp(22px, 4vw, 48px) clamp(18px, 3vw, 36px); border-radius: var(--radius); background: var(--blue); overflow: hidden; isolation: isolate; }
-.feat-stage::before { content: ""; position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; right: -18%; bottom: -45%; border-radius: 50%; background: var(--yellow); transition: transform 1s var(--ease); }
-.feat--rev .feat-stage::before { right: auto; left: -18%; top: -45%; bottom: auto; }
-.feat-stage:hover::before { transform: scale(1.12); }
-.feat-browser { border-radius: 14px; overflow: hidden; background: var(--surface); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .55); transition: transform .8s var(--ease); }
-.feat-browser img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-.feat-phone { position: absolute; right: clamp(14px, 3vw, 40px); bottom: clamp(14px, 3vw, 34px); width: 23%; aspect-ratio: 9 / 19.5; padding: 5px; border-radius: 24px; background: #0b0b0f; box-shadow: 0 24px 50px -16px rgba(0, 0, 0, .6); transition: transform .8s var(--ease); }
-.feat-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 19px; }
-.feat-stage:hover .feat-browser { transform: translateY(-6px) rotate(-1deg); }
-.feat-stage:hover .feat-phone { transform: translateY(-10px) rotate(3deg); }
-.feat-info { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-.feat-info h3 { font-family: var(--f-display); font-weight: 900; font-size: clamp(30px, 4vw, 54px); line-height: 1; letter-spacing: -0.04em; text-transform: uppercase; }
-.feat-info p { color: var(--muted); font-size: 16px; line-height: 1.6; }
-.feat-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 6px; }
-.feat-list li { padding: 7px 13px; border-radius: 999px; background: var(--surface-2); font-size: 12.5px; font-weight: 700; }
-@media (max-width: 860px) {
-  .feat { grid-template-columns: 1fr; }
-  .feat--rev .feat-stage { order: 0; }
-  .feat-stage { padding: 18px 56px 18px 14px; }
-  .feat-phone { width: 26%; padding: 3px; border-radius: 16px; }
-  .feat-phone img { border-radius: 13px; }
-}
 
 .ph-screen > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
