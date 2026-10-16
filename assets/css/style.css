@@ -655,8 +655,6 @@ button.media { text-align: left; }
 
 .ph-screen > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* Факты вместо цифр */
-.stats--facts .stat b { font-size: clamp(30px, 3.6vw, 54px); letter-spacing: -0.03em; }
 
 /* ---------- Адаптив ---------- */
 @media (max-width: 1180px) {
