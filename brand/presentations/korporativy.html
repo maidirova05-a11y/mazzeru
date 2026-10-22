@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>MAZZERU — Корпоративы</title>
+<style>
+  @font-face { font-family: "Inter Tight"; src: url("../fonts/InterTight.ttf") format("truetype"); font-weight: 100 900; }
+  @font-face { font-family: "Unbounded"; src: url("../fonts/Unbounded-ExtraBold.ttf") format("truetype"); font-weight: 800; }
+
+  :root {
+    --bg: #FAF8F2; --surface: #FFFFFF; --sand: #F0EDE3;
+    --ink: #0B0B0F; --muted: #5D5C66; --line: rgba(11,11,15,.12);
+    --blue: #0047FF; --yellow: #E7FF00;
+    --pad: 112px; --r: 32px;
+  }
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #777; }
+  body { font-family: "Inter Tight", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; background: var(--bg); padding: var(--pad); page-break-after: always; break-after: page; }
+  .slide.blue { background: var(--blue); color: #fff; }
+  .slide.yellow { background: var(--yellow); }
+
+  /* Типографика BOLD */
+  .h1, .h2 { font-weight: 900; text-transform: uppercase; letter-spacing: -.04em; line-height: .9; }
+  .h1 { font-size: 150px; }
+  .h2 { font-size: 104px; }
+  .h3 { font-weight: 800; font-size: 40px; letter-spacing: -.02em; line-height: 1.05; text-transform: uppercase; }
+  .label { font-weight: 700; font-size: 22px; letter-spacing: .32em; text-transform: uppercase; }
+  .lead { font-size: 34px; line-height: 1.3; color: var(--muted); max-width: 1080px; }
+  .blue .lead { color: rgba(255,255,255,.78); }
+  .t-blue { color: var(--blue); }
+  .t-yellow { color: var(--yellow); }
+  .body { font-size: 27px; line-height: 1.38; color: var(--muted); }
+  .blue .body { color: rgba(255,255,255,.72); }
+
+  .label + .h2, .label + .h1 { margin-top: 28px; }
+  .h2 + .lead { margin-top: 36px; }
+
+  /* Футер */
+  .foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 56px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 18px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  .foot img { height: 26px; display: block; }
+  .blue .foot { color: rgba(255,255,255,.7); }
+
+  .pill { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+
+  /* Карточки */
+  .card { background: var(--surface); border-radius: var(--r); padding: 44px; border: 1px solid var(--line); }
+  .card.sand { background: var(--sand); border-color: transparent; }
+  .card.onblue { background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.22); }
+  .card .num { width: 76px; height: 76px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; font-weight: 900; font-size: 26px; letter-spacing: .04em; }
+
+  .grid { display: grid; gap: 28px; }
+
+  /* Фирменные круги */
+  .circle { position: absolute; border-radius: 50%; }
+  .mark { position: absolute; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 30px 80px rgba(0,0,0,.18); }
+
+  .photo { border-radius: 40px; overflow: hidden; background: var(--sand); position: relative; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ph { display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 24px; line-height: 1.4; border: 3px dashed rgba(0,71,255,.35); }
+  .ph b { display: block; font-size: 20px; letter-spacing: .32em; color: var(--blue); margin-bottom: 10px; }
+
+  ul.dots { list-style: none; }
+  ul.dots li { position: relative; padding-left: 44px; font-size: 29px; line-height: 1.35; margin-bottom: 22px; }
+  ul.dots li::before { content: ""; position: absolute; left: 0; top: 13px; width: 16px; height: 16px; border-radius: 50%; background: var(--blue); }
+  .blue ul.dots li::before { background: var(--yellow); }
+</style>
+</head>
+<body>
+
+<!-- 1. Обложка -->
+<section class="slide">
+  <div class="circle" style="width:1100px;height:1100px;right:-330px;bottom:-420px;background:var(--blue)"></div>
+  <div class="circle" style="width:560px;height:560px;right:560px;bottom:-460px;background:var(--yellow)"></div>
+  <div class="mark" style="width:300px;height:300px;right:300px;top:330px;background:#fff">
+    <img src="../logo/svg/mazzeru-mark-white.svg" style="width:300px;height:300px;border-radius:50%" alt="">
+  </div>
+  <img src="../logo/svg/mazzeru-logo-blue.svg" style="height:68px;display:block" alt="mazzeru">
+  <div class="label t-blue" style="margin-top:72px">AI Studio · для корпоративов</div>
+  <div class="h1" style="margin-top:32px;font-size:128px">Корпоратив,<br>о котором<br>говорят<br><span class="t-blue">ещё месяц</span></div>
+  <p class="lead" style="margin-top:36px;max-width:880px;color:var(--ink)">ИИ-видео с вашими сотрудниками, сайт-приглашение и мобильная съёмка — под ключ</p>
+  <div class="label" style="position:absolute;left:var(--pad);bottom:64px;font-size:20px">@mazzeru.studio</div>
+</section>
+
+<!-- 2. Три услуги -->
+<section class="slide">
+  <div class="label t-blue">Что мы делаем</div>
+  <div class="h2">Три услуги —<br>один праздник</div>
+  <p class="lead">Берём на себя всё, что делает вечер запоминающимся: от приглашения до фильма, который смотрят и после праздника.</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:72px">
+    <div class="card" style="height:340px"><div class="num">01</div><div class="h3" style="margin-top:40px">ИИ-видео</div><p class="body" style="margin-top:18px">Интервью, кино и викторина, где главные герои — ваши сотрудники</p></div>
+    <div class="card" style="height:340px"><div class="num">02</div><div class="h3" style="margin-top:40px">Сайт-приглашение</div><p class="body" style="margin-top:18px">Одна ссылка: приглашение, регистрация гостей, программа и галерея</p></div>
+    <div class="card" style="height:340px"><div class="num">03</div><div class="h3" style="margin-top:40px">Мобилография</div><p class="body" style="margin-top:18px">Съёмка на смартфон и готовые Reels ещё до конца вечера</p></div>
+  </div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>02</span></div>
+</section>
+
+<!-- 3. Направление 01 -->
+<section class="slide blue">
+  <div class="circle" style="width:820px;height:820px;right:-300px;top:-440px;background:var(--yellow)"></div>
+  <div class="label t-yellow">Направление 01</div>
+  <div class="h1" style="font-size:240px;margin-top:150px">ИИ-видео</div>
+  <p class="lead" style="margin-top:40px;font-size:40px;color:#fff">Главные герои — ваши сотрудники</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:48px;position:absolute;left:var(--pad);right:var(--pad);bottom:150px">
+    <div style="border-top:4px solid #fff;padding-top:26px"><div class="label t-yellow" style="font-size:20px">01</div><div class="h3" style="margin-top:14px">ИИ-интервью</div></div>
+    <div style="border-top:4px solid #fff;padding-top:26px"><div class="label t-yellow" style="font-size:20px">02</div><div class="h3" style="margin-top:14px">ИИ-кино</div></div>
+    <div style="border-top:4px solid #fff;padding-top:26px"><div class="label t-yellow" style="font-size:20px">03</div><div class="h3" style="margin-top:14px">ИИ-викторина</div></div>
+  </div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-white.svg" alt=""><span>03</span></div>
+</section>
+
+<!-- 4. ИИ-интервью -->
+<section class="slide">
+  <div style="width:1080px">
+    <div class="label t-blue">Формат 01</div>
+    <div class="h2">ИИ-интервью</div>
+    <p class="lead">Гости записывают пожелание коллегам — мы превращаем его в мини-шоу с ИИ-эффектами</p>
+    <ul class="dots" style="margin-top:56px;max-width:1000px">
+      <li>Фотозона с микрофоном и светом прямо на площадке</li>
+      <li>После пожелания — ИИ-магия: гость становится Халком, с потолка сыплются деньги, офис уходит под воду</li>
+      <li>Ролики 15–30 секунд в вертикальном формате — сразу в Telegram или WhatsApp</li>
+      <li>Лучшие — на большом экране в конце вечера, все вместе — в итоговом фильме</li>
+    </ul>
+  </div>
+  <div class="circle" style="width:640px;height:640px;right:-120px;bottom:-260px;background:var(--blue)"></div>
+  <div class="photo" style="position:absolute;right:190px;top:96px;width:480px;height:854px;box-shadow:0 40px 90px rgba(11,11,15,.22)">
+    <img src="../../assets/img/ai/snap-poster.webp" alt="">
+    <div class="pill" style="position:absolute;left:32px;right:32px;bottom:32px;height:72px;background:var(--yellow);font-size:22px">9:16 · 15–30 сек</div>
+  </div>
+  <div class="foot" style="right:auto;width:1000px"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>04</span></div>
+</section>
+
+<!-- 5. ИИ-кино -->
+<section class="slide">
+  <div class="photo ph" style="position:absolute;left:var(--pad);top:96px;width:780px;height:830px">
+    <div><b>ФОТО</b>Постер или кадр ИИ-фильма</div>
+  </div>
+  <div style="position:absolute;left:1000px;right:var(--pad);top:var(--pad)">
+    <div class="label t-blue">Формат 02</div>
+    <div class="h2">ИИ-кино</div>
+    <p class="lead" style="color:var(--ink)">Короткий фильм, где сотрудники и руководители — герои блокбастера</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:56px">
+      <div class="card" style="background:var(--blue);border:0;color:#fff;padding:40px">
+        <div style="font-weight:900;font-size:76px;letter-spacing:-.04em;line-height:1" class="t-yellow">3–7 МИН</div>
+        <p class="body" style="color:rgba(255,255,255,.8);margin-top:18px">премьера на большом экране</p>
+      </div>
+      <div class="card" style="background:var(--yellow);border:0;padding:40px">
+        <div style="font-weight:900;font-size:76px;letter-spacing:-.04em;line-height:1">−7 ДНЕЙ</div>
+        <p class="body" style="color:var(--ink);margin-top:18px">трейлер и постер для анонса</p>
+      </div>
+    </div>
+    <p class="body" style="margin-top:48px;color:var(--ink)">Сюжет под компанию: история года, запуск продукта, «спасение офиса», шпионский боевик. Лица — по фото, ИИ-сцены, озвучка и музыка.</p>
+  </div>
+  <div class="foot" style="left:1000px"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>05</span></div>
+</section>
+
+<!-- 6. ИИ-викторина -->
+<section class="slide">
+  <div class="label t-blue">Формат 03</div>
+  <div class="h2">ИИ-викторина</div>
+  <p class="lead">«Угадай, что будет дальше» — интерактивная игра для всего зала</p>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:64px">
+    <div class="card" style="height:400px"><div style="font-weight:900;font-size:120px;line-height:.9;letter-spacing:-.04em" class="t-blue">1</div><div class="h3" style="margin-top:44px">Ролик</div><p class="body" style="margin-top:16px">На экране ИИ-ролик с неожиданной развязкой</p></div>
+    <div class="card" style="height:400px"><div style="font-weight:900;font-size:120px;line-height:.9;letter-spacing:-.04em" class="t-blue">2</div><div class="h3" style="margin-top:44px">Стоп-кадр</div><p class="body" style="margin-top:16px">На самом интересном моменте — пауза и варианты ответа</p></div>
+    <div class="card" style="height:400px"><div style="font-weight:900;font-size:120px;line-height:.9;letter-spacing:-.04em" class="t-blue">3</div><div class="h3" style="margin-top:44px">Ответы</div><p class="body" style="margin-top:16px">Команды голосуют со смартфонов по QR-коду</p></div>
+    <div class="card" style="height:400px;background:var(--blue);border:0;color:#fff"><div style="font-weight:900;font-size:120px;line-height:.9;letter-spacing:-.04em" class="t-yellow">4</div><div class="h3" style="margin-top:44px">Лидеры</div><p class="body" style="margin-top:16px;color:rgba(255,255,255,.8)">Живая таблица на экране и призы победителям</p></div>
+  </div>
+  <div class="label" style="margin-top:44px;font-size:20px;letter-spacing:.2em">10–20 роликов · сотрудники в главных ролях · ведёт наш ведущий или ваш по сценарию</div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>06</span></div>
+</section>
+
+<!-- 7. Сайт-приглашение -->
+<section class="slide">
+  <div style="width:1150px">
+    <div class="label t-blue">Направление 02</div>
+    <div class="h2">Сайт-<br>приглашение</div>
+    <p class="lead">Одна ссылка вместо рассылки, регистрации и программки — а организатор видит, кто придёт</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:34px 40px;margin-top:60px">
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Дизайн в фирменных цветах</div>
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Карта и «Построить маршрут»</div>
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Дресс-код с примерами</div>
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Анкета RSVP: +1, еда, аллергии</div>
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Таймер до праздника</div>
+      <div style="display:flex;align-items:center;gap:22px;font-size:29px"><span class="pill" style="width:56px;height:56px;background:var(--blue);color:var(--yellow);font-size:26px;letter-spacing:0">✓</span>Удобно на телефоне</div>
+    </div>
+  </div>
+  <div class="circle" style="width:700px;height:700px;right:-160px;top:-200px;background:var(--yellow)"></div>
+  <!-- телефон -->
+  <div style="position:absolute;right:170px;top:80px;width:450px;height:920px;border-radius:64px;background:var(--ink);padding:18px;box-shadow:0 40px 90px rgba(11,11,15,.25)">
+    <div style="width:100%;height:100%;border-radius:48px;background:var(--blue);color:#fff;padding:56px 40px 40px;position:relative">
+      <img src="../logo/svg/mazzeru-mark-white.svg" style="width:56px;height:56px;display:block" alt="">
+      <div class="label t-yellow" style="font-size:16px;margin-top:40px">Приглашение</div>
+      <div style="font-weight:900;font-size:44px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase;margin-top:18px">Новогодний вечер [Компания]</div>
+      <div style="font-size:22px;margin-top:22px;color:rgba(255,255,255,.75)">Пятница · 19:00</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px">
+        <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:18px 0;text-align:center"><div style="font-weight:900;font-size:44px" class="t-yellow">12</div><div style="font-size:16px;opacity:.75;margin-top:4px">дн</div></div>
+        <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:18px 0;text-align:center"><div style="font-weight:900;font-size:44px" class="t-yellow">08</div><div style="font-size:16px;opacity:.75;margin-top:4px">ч</div></div>
+        <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:18px 0;text-align:center"><div style="font-weight:900;font-size:44px" class="t-yellow">45</div><div style="font-size:16px;opacity:.75;margin-top:4px">мин</div></div>
+      </div>
+      <div style="position:absolute;left:40px;right:40px;bottom:96px" class="pill"><span class="pill" style="width:100%;height:80px;background:var(--yellow);color:var(--ink);font-size:20px">Я приду →</span></div>
+      <div style="position:absolute;left:0;right:0;bottom:44px;text-align:center;font-size:18px;color:rgba(255,255,255,.75)">Построить маршрут →</div>
+    </div>
+  </div>
+  <div class="foot" style="right:auto;width:1150px"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>07</span></div>
+</section>
+
+<!-- 8. Функции сайта -->
+<section class="slide blue">
+  <div class="label t-yellow">Сайт-приглашение</div>
+  <div class="h2">Функции сайта <span class="t-yellow">на выбор</span></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:22px;margin-top:64px">
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Личные приглашения</div><p class="body" style="margin-top:12px;font-size:23px">Своя ссылка и обращение по имени</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Рассадка</div><p class="body" style="margin-top:12px;font-size:23px">Гость вводит имя и видит свой стол</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Программа вечера</div><p class="body" style="margin-top:12px;font-size:23px">Тайминг, ведущий, артисты, конкурсы</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Номинации</div><p class="body" style="margin-top:12px;font-size:23px">«Сотрудник года» и другие — итоги на празднике</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Стена пожеланий</div><p class="body" style="margin-top:12px;font-size:23px">Пожелания коллегам выводим на экран</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Галерея</div><p class="body" style="margin-top:12px;font-size:23px">Фото, Reels и ИИ-видео в одном месте</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Фото от гостей</div><p class="body" style="margin-top:12px;font-size:23px">QR-код на столах и общий альбом</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Плейлист</div><p class="body" style="margin-top:12px;font-size:23px">Каждый гость предлагает песню</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Онлайн-трансляция</div><p class="body" style="margin-top:12px;font-size:23px">Для филиалов и удалённых коллег</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Связь с викториной</div><p class="body" style="margin-top:12px;font-size:23px">Голосование прямо на сайте</p></div>
+    <div class="card onblue" style="padding:32px 34px;height:186px"><div style="font-weight:800;font-size:28px">Админ-панель</div><p class="body" style="margin-top:12px;font-size:23px">Список гостей и выгрузка в Excel</p></div>
+    <div class="card" style="padding:32px 34px;height:186px;background:var(--yellow);border:0"><div style="font-weight:800;font-size:28px">Два языка</div><p class="body" style="margin-top:12px;font-size:23px;color:var(--ink)">Казахский и русский или английский</p></div>
+  </div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-white.svg" alt=""><span>08</span></div>
+</section>
+
+<!-- 9. Мобилография -->
+<section class="slide">
+  <div style="width:1080px">
+    <div class="label t-blue">Направление 03</div>
+    <div class="h2">Мобилография</div>
+    <p class="lead">Оператор снимает вечер на смартфон и монтирует ролики прямо на площадке</p>
+    <div style="margin-top:52px;background:var(--blue);color:#fff;border-radius:var(--r);padding:38px 44px">
+      <div class="label t-yellow" style="font-size:20px">Same-day edit</div>
+      <div style="font-weight:900;font-size:44px;line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin-top:18px">Готовый Reels — на экране ещё до конца праздника</div>
+    </div>
+    <ul class="dots" style="margin-top:44px">
+      <li style="margin-bottom:14px">Вертикальная съёмка для Instagram, TikTok и соцсетей компании</li>
+      <li style="margin-bottom:14px">Сторис в реальном времени и короткие интервью гостей</li>
+      <li style="margin-bottom:14px">Итоговый ролик-атмосфера 1–2 минуты через 2–3 дня</li>
+      <li style="margin-bottom:14px">Исходники и обработанные фото — в галерее на сайте</li>
+    </ul>
+  </div>
+  <div class="circle" style="width:620px;height:620px;right:-200px;top:-220px;background:var(--yellow)"></div>
+  <div class="photo" style="position:absolute;right:var(--pad);top:96px;width:540px;height:830px;box-shadow:0 40px 90px rgba(11,11,15,.2)">
+    <img src="../../assets/img/hero/mobile.webp" alt="" style="object-position:50% 40%">
+    <div class="pill" style="position:absolute;left:32px;bottom:32px;height:60px;padding:0 28px;background:var(--yellow);font-size:18px">Снято на смартфон</div>
+  </div>
+  <div class="foot" style="right:auto;width:1080px"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>09</span></div>
+</section>
+
+<!-- 10. Три пакета -->
+<section class="slide">
+  <div class="label t-blue">Пакеты</div>
+  <div class="h2">Три пакета</div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:60px">
+    <div class="card" style="height:640px;display:flex;flex-direction:column">
+      <div class="label" style="font-size:18px;color:var(--muted)">До 50 человек</div>
+      <div class="h3" style="font-size:56px;font-weight:900;margin-top:18px">Старт</div>
+      <ul class="dots" style="margin-top:36px"><li style="font-size:25px;margin-bottom:16px">Сайт-приглашение с RSVP и картой</li><li style="font-size:25px;margin-bottom:16px">До 20 ИИ-интервью</li><li style="font-size:25px;margin-bottom:16px">Мобилограф 3 часа и 1 Reels</li></ul>
+      <div style="margin-top:auto;border-top:1px solid var(--line);padding-top:24px"><div class="body" style="font-size:22px">Подготовка: 5 рабочих дней</div><div style="font-weight:900;font-size:44px;margin-top:10px">[___ ₸]</div></div>
+    </div>
+    <div class="card" style="height:640px;display:flex;flex-direction:column">
+      <div class="label" style="font-size:18px;color:var(--muted)">50–150 человек</div>
+      <div class="h3" style="font-size:56px;font-weight:900;margin-top:18px">Стандарт</div>
+      <ul class="dots" style="margin-top:36px"><li style="font-size:25px;margin-bottom:16px">Личные приглашения, программа и рассадка</li><li style="font-size:25px;margin-bottom:16px">До 50 ИИ-интервью и викторина</li><li style="font-size:25px;margin-bottom:16px">Мобилограф 5 часов и 2 Reels</li><li style="font-size:25px;margin-bottom:16px">Галерея и ролик-атмосфера</li></ul>
+      <div style="margin-top:auto;border-top:1px solid var(--line);padding-top:24px"><div class="body" style="font-size:22px">Подготовка: 10 рабочих дней</div><div style="font-weight:900;font-size:44px;margin-top:10px">[___ ₸]</div></div>
+    </div>
+    <div class="card blue" style="height:640px;display:flex;flex-direction:column;background:var(--blue);color:#fff;border:0;position:relative;overflow:hidden">
+      <div class="circle" style="width:200px;height:200px;right:-90px;top:-90px;background:var(--yellow)"></div>
+      <div class="label t-yellow" style="font-size:18px">Полный цикл</div>
+      <div class="h3" style="font-size:56px;font-weight:900;margin-top:18px">Премиум</div>
+      <ul class="dots" style="margin-top:36px"><li style="font-size:25px;margin-bottom:16px">Номинации и стена пожеланий</li><li style="font-size:25px;margin-bottom:16px">ИИ-кино 3–7 мин с трейлером</li><li style="font-size:25px;margin-bottom:16px">ИИ-интервью без ограничений</li><li style="font-size:25px;margin-bottom:16px">Мобилограф весь вечер, 3 Reels и сторис</li></ul>
+      <div style="margin-top:auto;border-top:1px solid rgba(255,255,255,.3);padding-top:24px"><div class="body" style="font-size:22px">Подготовка: 14–21 рабочих дней</div><div style="font-weight:900;font-size:44px;margin-top:10px" class="t-yellow">[___ ₸]</div></div>
+    </div>
+  </div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>10</span></div>
+</section>
+
+<!-- 11. Сравнение -->
+<section class="slide" style="padding-top:80px">
+  <style>
+    .cmp { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 36px; font-size: 23px; }
+    .cmp th, .cmp td { padding: 0 28px; height: 50px; text-align: center; }
+    .cmp th:first-child, .cmp td:first-child { text-align: left; font-weight: 700; }
+    .cmp thead th { background: var(--ink); color: #fff; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 18px; height: 64px; }
+    .cmp thead th:first-child { border-radius: 20px 0 0 0; }
+    .cmp thead th:last-child { border-radius: 0 20px 0 0; background: var(--blue); color: var(--yellow); }
+    .cmp tbody tr:nth-child(odd) td { background: #fff; }
+    .cmp tbody tr:nth-child(even) td { background: var(--sand); }
+    .cmp td:last-child { color: var(--blue); font-weight: 700; }
+    .cmp .y { color: var(--blue); font-weight: 900; }
+    .cmp .n { color: rgba(11,11,15,.3); }
+  </style>
+  <div class="label t-blue">Пакеты</div>
+  <div class="h2" style="font-size:88px">Сравнение пакетов</div>
+  <table class="cmp">
+    <thead><tr><th style="width:44%">Что входит</th><th>Старт</th><th>Стандарт</th><th>Премиум</th></tr></thead>
+    <tbody>
+      <tr><td>Сайт-приглашение с RSVP и картой</td><td class="y">✓</td><td class="y">✓</td><td>✓</td></tr>
+      <tr><td>Личные приглашения по имени</td><td class="n">—</td><td class="y">✓</td><td>✓</td></tr>
+      <tr><td>Программа вечера и рассадка на сайте</td><td class="n">—</td><td class="y">✓</td><td>✓</td></tr>
+      <tr><td>Номинации и стена пожеланий</td><td class="n">—</td><td class="n">—</td><td>✓</td></tr>
+      <tr><td>Галерея фото и видео после праздника</td><td class="n">—</td><td class="y">✓</td><td>✓</td></tr>
+      <tr><td>ИИ-интервью, роликов</td><td>до 20</td><td>до 50</td><td>без ограничений</td></tr>
+      <tr><td>ИИ-викторина, роликов</td><td class="n">—</td><td>10</td><td>20, с сотрудниками</td></tr>
+      <tr><td>ИИ-кино</td><td class="n">—</td><td class="n">—</td><td>3–7 мин + трейлер</td></tr>
+      <tr><td>Мобилограф, часов</td><td>3</td><td>5</td><td>весь вечер</td></tr>
+      <tr><td>Reels в день мероприятия</td><td>1</td><td>2</td><td>3 + сторис</td></tr>
+      <tr><td>Итоговый ролик-атмосфера</td><td class="n">—</td><td class="y">✓</td><td>✓</td></tr>
+      <tr><td>Подготовка, рабочих дней</td><td>5</td><td>10</td><td>14–21</td></tr>
+    </tbody>
+  </table>
+  <div class="foot" style="bottom:40px"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>11</span></div>
+</section>
+
+<!-- 12. Опции -->
+<section class="slide">
+  <div class="label t-blue">Дополнительно</div>
+  <div class="h2">Опции к любому пакету</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px">
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">ИИ-поздравление руководителя</div><p class="body" style="margin-top:16px;font-size:24px">Обращение к команде в образе героя фильма или мультфильма</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">ИИ-открытки</div><p class="body" style="margin-top:16px;font-size:24px">С лицом каждого сотрудника — в подарок после праздника</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">ИИ-ретроспектива года</div><p class="body" style="margin-top:16px;font-size:24px">Ролик о главных событиях компании</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">Ещё мобилограф</div><p class="body" style="margin-top:16px;font-size:24px">Второй оператор или дополнительный час съёмки</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">Онлайн-трансляция</div><p class="body" style="margin-top:16px;font-size:24px">Для филиалов и удалённых сотрудников</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">Два языка</div><p class="body" style="margin-top:16px;font-size:24px">Сайт и ролики на казахском и русском</p></div>
+    <div class="card" style="height:300px;padding:38px"><div style="font-weight:800;font-size:30px;line-height:1.15">Срочное производство</div><p class="body" style="margin-top:16px;font-size:24px">В 2 раза быстрее стандартного срока</p></div>
+    <div class="card" style="height:300px;padding:38px;background:var(--blue);border:0;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+            <div style="font-weight:900;font-size:40px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase;position:relative">Соберём пакет под ваш праздник</div>
+      <span class="pill" style="width:64px;height:64px;background:var(--yellow);color:var(--ink);font-size:30px;letter-spacing:0">→</span>
+    </div>
+  </div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>12</span></div>
+</section>
+
+<!-- 13. Как мы работаем -->
+<section class="slide">
+  <div class="label t-blue">Процесс</div>
+  <div class="h2">Как мы работаем</div>
+  <div class="grid" style="grid-template-columns:repeat(6,1fr);gap:32px;margin-top:96px">
+    <div style="border-top:6px solid var(--blue);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1" class="t-blue">01</div><div style="font-weight:800;font-size:28px;margin-top:26px">Бриф</div><p class="body" style="margin-top:14px;font-size:23px">Дата, число гостей, стиль праздника, фото сотрудников</p></div>
+    <div style="border-top:6px solid var(--blue);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1" class="t-blue">02</div><div style="font-weight:800;font-size:28px;margin-top:26px">Концепция</div><p class="body" style="margin-top:14px;font-size:23px">Сценарий ИИ-кино, вопросы викторины и дизайн сайта — на согласование</p></div>
+    <div style="border-top:6px solid var(--blue);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1" class="t-blue">03</div><div style="font-weight:800;font-size:28px;margin-top:26px">Сайт</div><p class="body" style="margin-top:14px;font-size:23px">Запускаем приглашение и рассылаем ссылки гостям</p></div>
+    <div style="border-top:6px solid var(--blue);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1" class="t-blue">04</div><div style="font-weight:800;font-size:28px;margin-top:26px">Производство</div><p class="body" style="margin-top:14px;font-size:23px">Делаем ИИ-кино и викторину, показываем трейлер</p></div>
+    <div style="border-top:6px solid var(--ink);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1">05</div><div style="font-weight:800;font-size:28px;margin-top:26px">День праздника</div><p class="body" style="margin-top:14px;font-size:23px">ИИ-интервью, викторина, мобилография и показ роликов</p></div>
+    <div style="border-top:6px solid var(--blue);padding-top:28px"><div style="font-weight:900;font-size:72px;letter-spacing:-.04em;line-height:1" class="t-blue">06</div><div style="font-weight:800;font-size:28px;margin-top:26px">После</div><p class="body" style="margin-top:14px;font-size:23px">Итоговые ролики и галерея на сайте за 2–3 дня</p></div>
+  </div>
+  <div class="pill" style="position:absolute;left:var(--pad);bottom:150px;height:84px;padding:0 48px;background:var(--yellow);font-size:22px;letter-spacing:.12em">Подготовка — от 5 до 21 рабочего дня, срочно — в 2 раза быстрее</div>
+  <div class="foot"><img src="../logo/svg/mazzeru-wordmark-black.svg" alt=""><span>13</span></div>
+</section>
+
+<!-- 14. Финал -->
+<section class="slide blue">
+  <div class="circle" style="width:900px;height:900px;right:-240px;bottom:-380px;background:var(--yellow)"></div>
+  <div class="mark" style="width:340px;height:340px;right:300px;top:190px;background:#fff">
+    <img src="../logo/svg/mazzeru-mark-white.svg" style="width:340px;height:340px;filter:none;border-radius:50%;background:#fff" alt="" onerror="this.remove()">
+  </div>
+  <img src="../logo/svg/mazzeru-logo-white.svg" style="height:68px;display:block" alt="mazzeru">
+  <div class="label t-yellow" style="margin-top:96px">AI Studio · Астана</div>
+  <div class="h1" style="font-size:190px;margin-top:36px">Давайте<br><span style="background:var(--yellow);color:var(--ink);padding:0 24px;margin-left:-24px;border-radius:12px">создадим</span></div>
+  <p class="lead" style="margin-top:56px;color:#fff">Расскажите о вашем празднике — предложим концепцию и смету</p>
+  <div style="position:absolute;left:var(--pad);bottom:96px;display:flex;align-items:center;gap:36px">
+    <span class="pill" style="height:96px;padding:0 20px 0 48px;gap:28px;background:var(--yellow);color:var(--ink);font-size:24px">Пишите в Direct <span class="pill" style="width:60px;height:60px;background:var(--ink);color:var(--yellow);letter-spacing:0;font-size:28px">→</span></span>
+    <span style="font-weight:800;font-size:32px">@mazzeru.studio</span>
+    <span style="font-size:26px;color:rgba(255,255,255,.75)">[телефон / WhatsApp]</span>
+  </div>
+</section>
+
+</body>
+</html>
